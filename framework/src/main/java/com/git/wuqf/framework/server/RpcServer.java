@@ -4,9 +4,11 @@ import com.git.wuqf.framework.RpcRequest;
 import com.git.wuqf.framework.RpcResponse;
 import com.git.wuqf.framework.annotation.RpcService;
 import com.git.wuqf.framework.handler.RpcHandler;
-import com.git.wuqf.framework.registry.ServiceRegistry;
 import com.git.wuqf.framework.serialization.RpcDecoder;
 import com.git.wuqf.framework.serialization.RpcEncoder;
+import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.registry.RegistryFactory;
+import com.git.wuqf.xiaokuo.registry.RegistryService;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -33,18 +35,16 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcServer.class);
 
-    private String serverAddress;
-    private ServiceRegistry serviceRegistry;
+    private URL serviceUrl;
+    private URL registryUrl;
+    private RegistryFactory registryFactory;
 
     private Map<String, Object> handlerMap = new HashMap<>(); // 存放接口名与服务对象之间的映射关系
 
-    public RpcServer(String serverAddress) {
-        this.serverAddress = serverAddress;
-    }
-
-    public RpcServer(String serverAddress, ServiceRegistry serviceRegistry) {
-        this.serverAddress = serverAddress;
-        this.serviceRegistry = serviceRegistry;
+    public RpcServer(URL serviceUrl,URL registryUrl, RegistryFactory registryFactory) {
+        this.serviceUrl = serviceUrl;
+        this.registryUrl=registryUrl;
+        this.registryFactory = registryFactory;
     }
 
     @Override
@@ -77,21 +77,34 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            String[] array = serverAddress.split(":");
-            String host = array[0];
-            int port = Integer.parseInt(array[1]);
+            RegistryService registryService = registryFactory.getRegistry(registryUrl);
+            registryService.register(serviceUrl);
 
-            ChannelFuture future = bootstrap.bind(host, port).sync();
-            LOGGER.debug("server started on port {}", port);
+            ChannelFuture future = bootstrap.bind(serviceUrl.getHost(), serviceUrl.getPort()).sync();
+            LOGGER.debug("server started on port {}", serviceUrl.getPort());
 
-            if (serviceRegistry != null) {
-                serviceRegistry.register(serverAddress); // 注册服务地址
-            }
+            registryService.register(serviceUrl); // 注册服务地址
 
             future.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();
         }
+    }
+
+    public URL getRegistryUrl() {
+        return registryUrl;
+    }
+
+    public void setRegistryUrl(URL registryUrl) {
+        this.registryUrl = registryUrl;
+    }
+
+    public URL getServiceUrl() {
+        return serviceUrl;
+    }
+
+    public void setServiceUrl(URL serviceUrl) {
+        this.serviceUrl = serviceUrl;
     }
 }

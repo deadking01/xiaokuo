@@ -2,7 +2,8 @@ package com.git.wuqf.framework.client;
 
 import com.git.wuqf.framework.RpcRequest;
 import com.git.wuqf.framework.RpcResponse;
-import com.git.wuqf.framework.registry.ServiceDiscovery;
+import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.registry.RegistryFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -14,12 +15,12 @@ import java.util.UUID;
  */
 public class RpcProxy {
 
-    private String serverAddress;
-    private ServiceDiscovery serviceDiscovery;
+    private URL registryUrl;
+    private RegistryFactory registryFactory;
 
-    public RpcProxy(String serverAddress,ServiceDiscovery serviceDiscovery) {
-        this.serverAddress = serverAddress;
-        this.serviceDiscovery = serviceDiscovery;
+    public RpcProxy(URL registryUrl, RegistryFactory registryFactory) {
+        this.registryUrl = registryUrl;
+        this.registryFactory = registryFactory;
     }
 
     @SuppressWarnings("unchecked")
@@ -37,22 +38,18 @@ public class RpcProxy {
                         request.setParameterTypes(method.getParameterTypes());
                         request.setParameters(args);
 
-                        if (serviceDiscovery != null) {
-                            serverAddress = serviceDiscovery.discover(); // 发现服务
+                        RpcResponse response = null;
+                        if (registryFactory != null) {
+                            URL serviceUrl = registryFactory.getRegistry(registryUrl).lookup(registryUrl).get(0); // 发现服务
+                            RpcClient client = new RpcClient(serviceUrl.getHost(), serviceUrl.getPort()); // 初始化 RPC 客户端
+                            response = client.send(request); // 通过 RPC 客户端发送 RPC 请求并获取 RPC 响应
+                            if (response.isError()) {
+                                throw response.getError();
+                            } else {
+                                return response.getResult();
+                            }
                         }
-
-                        String[] array = serverAddress.split(":");
-                        String host = array[0];
-                        int port = Integer.parseInt(array[1]);
-
-                        RpcClient client = new RpcClient(host, port); // 初始化 RPC 客户端
-                        RpcResponse response = client.send(request); // 通过 RPC 客户端发送 RPC 请求并获取 RPC 响应
-
-                        if (response.isError()) {
-                            throw response.getError();
-                        } else {
-                            return response.getResult();
-                        }
+                        throw response.getError();
                     }
                 }
         );
