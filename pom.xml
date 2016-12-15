@@ -12,6 +12,9 @@
         <module>demos</module>
         <module>xiaokuo-registry</module>
         <module>xiaokuo-common</module>
+        <module>xiaokuo-rpc</module>
+        <module>xiaokuo-remoting</module>
+        <module>xiaokuo-demos</module>
     </modules>
     <packaging>pom</packaging>
 
