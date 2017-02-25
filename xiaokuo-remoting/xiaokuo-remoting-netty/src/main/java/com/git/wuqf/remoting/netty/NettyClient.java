@@ -57,7 +57,7 @@ public class NettyClient extends AbstractClient {
 
     @Override
     protected void doConnect() {
-        ChannelFuture f = bootstrap.connect(url.getHost(), url.getPort());
+        ChannelFuture f = bootstrap.connect(getUrl().getHost(), getUrl().getPort());
         channel = f.channel();
     }
 

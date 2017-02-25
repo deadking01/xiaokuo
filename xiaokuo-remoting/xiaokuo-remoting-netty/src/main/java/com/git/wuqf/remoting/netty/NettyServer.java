@@ -54,8 +54,6 @@ public class NettyServer extends AbstractServer implements Server {
                 });
 
         ChannelFuture f = bootstrap.bind(getBindAddress());
-
-
     }
 
     public void doClose() {

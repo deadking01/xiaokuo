@@ -19,11 +19,6 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client,
     }
 
     @Override
-    public URL getUrl() {
-        return getUrl();
-    }
-
-    @Override
     public ChannelHandler getChannelHandler() {
         return getChannelHandler();
     }

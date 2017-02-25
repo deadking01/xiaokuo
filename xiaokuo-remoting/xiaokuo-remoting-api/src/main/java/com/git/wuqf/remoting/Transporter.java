@@ -1,13 +1,13 @@
 package com.git.wuqf.remoting;
 
-import java.util.List;
+import java.net.URL;
 
 /**
  * Created by wuqf on 17-2-24.
  */
 public interface Transporter {
 
-    Server bind(String url, List<ChannelHandler> channelHandler);
+    Server bind(URL url, ChannelHandler channelHandler);
 
-    Client Connect(String url, List<ChannelHandler> channelHandler);
+    Client Connect(URL url, ChannelHandler channelHandler);
 }
