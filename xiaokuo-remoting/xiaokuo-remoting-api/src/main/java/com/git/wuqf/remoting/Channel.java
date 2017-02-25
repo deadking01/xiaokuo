@@ -1,9 +1,13 @@
 package com.git.wuqf.remoting;
 
+import java.net.InetSocketAddress;
+
 /**
  * Created by wuqf on 17-2-24.
  */
-public interface Channel {
+public interface Channel extends EndPoint{
+
+    InetSocketAddress getRemoteAddress();
 
     boolean isConnected();
 

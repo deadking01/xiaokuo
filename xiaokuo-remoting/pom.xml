@@ -14,6 +14,7 @@
     <modules>
         <module>xiaokuo-remoting-api</module>
         <module>xiaokuo-remoting-zookeeper</module>
+        <module>xiaokuo-remoting-netty</module>
     </modules>
 
 
