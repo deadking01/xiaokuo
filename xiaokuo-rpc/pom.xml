@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>xiaokuo-rpc-api</module>
+        <module>xiaokou-rpc-netty</module>
     </modules>
 
 </project>
