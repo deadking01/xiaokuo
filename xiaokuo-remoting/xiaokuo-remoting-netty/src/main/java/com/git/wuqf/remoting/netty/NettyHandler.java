@@ -30,7 +30,6 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         NettyChannel channel=NettyChannel.getOrAddChannel(ctx.channel(),url,handler);
         handler.received(channel,msg);
-        ctx.writeAndFlush(msg);
     }
 
     @Override
