@@ -1,6 +1,5 @@
 package com.git.wuqf.xiaokuo.registry.zookeeper;
 
-import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.registry.Registry;
 import com.git.wuqf.xiaokuo.registry.support.AbstractRegistryFactory;
 

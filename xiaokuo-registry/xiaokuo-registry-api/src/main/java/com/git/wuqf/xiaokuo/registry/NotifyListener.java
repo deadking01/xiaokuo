@@ -1,7 +1,5 @@
 package com.git.wuqf.xiaokuo.registry;
 
-import com.git.wuqf.xiaokuo.common.URL;
-
 import java.util.List;
 
 /**

@@ -55,7 +55,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client,
         connect();
     }
     public void close() {
-
+        disconnect();
     }
     /**
      * Open client.

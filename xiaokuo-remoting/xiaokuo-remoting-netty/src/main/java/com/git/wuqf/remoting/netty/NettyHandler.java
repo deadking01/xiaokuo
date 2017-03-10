@@ -21,14 +21,16 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
     private ChannelHandler handler;
 
 
-    public NettyHandler(URL url,ChannelHandler handler) {
+    public NettyHandler(URL url, ChannelHandler handler) {
         this.url = url;
         this.handler=handler;
     }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
-        ctx.write(msg);
+        NettyChannel channel=NettyChannel.getOrAddChannel(ctx.channel(),url,handler);
+        handler.received(channel,msg);
+        ctx.writeAndFlush(msg);
     }
 
     @Override

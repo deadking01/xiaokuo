@@ -1,6 +1,5 @@
 package com.git.wuqf.xiaokuo.registry.zookeeper;
 
-import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.registry.NotifyListener;
 import com.git.wuqf.xiaokuo.registry.support.AbstractRegistry;
 import com.github.zkclient.IZkClient;

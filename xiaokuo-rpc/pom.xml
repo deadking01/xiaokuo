@@ -11,5 +11,8 @@
 
     <artifactId>xiaokuo-rpc</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>xiaokuo-rpc-api</module>
+    </modules>
 
 </project>

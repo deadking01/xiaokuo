@@ -7,6 +7,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -25,9 +28,6 @@ public class NettyClient extends AbstractClient {
 
     public NettyClient(URL url, ChannelHandler channelHandler) {
         super(url, channelHandler);
-        this.url = url;
-        this.channelHandler = channelHandler;
-        doOpen();
     }
 
     protected void doOpen() {
@@ -45,7 +45,9 @@ public class NettyClient extends AbstractClient {
                         ChannelPipeline p = ch.pipeline();
 
                         p.addLast(new LoggingHandler(LogLevel.INFO));
-                        p.addLast(nettyHandler);
+                        p.addLast(
+                                new ObjectEncoder(),
+                                new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);
                     }
                 });
     }
@@ -57,7 +59,12 @@ public class NettyClient extends AbstractClient {
 
     @Override
     protected void doConnect() {
-        ChannelFuture f = bootstrap.connect(getUrl().getHost(), getUrl().getPort());
+        ChannelFuture f = null;
+        try {
+            f = bootstrap.connect(getUrl().getHost(), getUrl().getPort()).sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         channel = f.channel();
     }
 

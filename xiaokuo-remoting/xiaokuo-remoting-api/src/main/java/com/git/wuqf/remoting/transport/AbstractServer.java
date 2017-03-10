@@ -23,7 +23,12 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
         super(url, channelHandler);
         localAddress = new InetSocketAddress(url.getHost(),url.getPort());
         bindAddress =  new InetSocketAddress(url.getHost(),url.getPort());;
+        doOpen();
     }
+
+    protected abstract void doOpen() ;
+
+    protected abstract void doClose() ;
 
     @Override
     public boolean isBound() {
@@ -63,6 +68,10 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
     }
     public SocketAddress getBindAddress() {
         return bindAddress;
+    }
+
+    public void close(){
+        doClose();
     }
 
 }

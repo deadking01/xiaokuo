@@ -9,6 +9,9 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
@@ -20,7 +23,7 @@ import java.util.Map;
 /**
  * Created by wuqf on 17-2-25.
  */
-public class NettyServer extends AbstractServer implements Server {
+public class NettyServer<T> extends AbstractServer implements Server {
 
     private Map<String, Channel> channels;
 
@@ -29,6 +32,8 @@ public class NettyServer extends AbstractServer implements Server {
 
     private EventLoopGroup bossGroup;
     private EventLoopGroup workerGroup;
+
+    private ChannelFuture f;
 
     public NettyServer(URL url, ChannelHandler channelHandler) {
         super(url, channelHandler);
@@ -43,20 +48,25 @@ public class NettyServer extends AbstractServer implements Server {
 
         bootstrap.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
-                .option(ChannelOption.SO_BACKLOG, 100)
+                .option(ChannelOption.SO_KEEPALIVE, true)
+                .option(ChannelOption.TCP_NODELAY, true)
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
-                        p.addLast(nettyHandler);
+                        p.addLast(new LoggingHandler(LogLevel.INFO));
+                        p.addLast(
+                                new ObjectEncoder(),
+                                new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);
                     }
                 });
 
-        ChannelFuture f = bootstrap.bind(getBindAddress());
+        f = bootstrap.bind(getBindAddress());
     }
 
     public void doClose() {
+        f.channel().closeFuture();
         bossGroup.shutdownGracefully();
         workerGroup.shutdownGracefully();
     }

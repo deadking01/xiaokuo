@@ -1,10 +1,7 @@
 package com.git.wuqf.xiaokuo.registry.support;
 
-import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.common.utils.NamedThreadFactory;
 import com.git.wuqf.xiaokuo.registry.Registry;
-import com.git.wuqf.xiaokuo.registry.RegistryService;
-import org.omg.CORBA.PRIVATE_MEMBER;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
