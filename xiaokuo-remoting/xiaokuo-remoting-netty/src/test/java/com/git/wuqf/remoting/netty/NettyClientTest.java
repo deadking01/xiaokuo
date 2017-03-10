@@ -14,7 +14,7 @@ public class NettyClientTest {
         NettyTransports nettyTransports=new NettyTransports();
         Client client=nettyTransports.Connect(url,new WordHandler());
         for(int i=0;i<2;i++){
-            client.send("aaa");
+            client.send(new Word("aaa"));
         }
         client.close();
     }
