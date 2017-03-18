@@ -1,6 +1,6 @@
 package com.git.wuqf.remoting;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  *

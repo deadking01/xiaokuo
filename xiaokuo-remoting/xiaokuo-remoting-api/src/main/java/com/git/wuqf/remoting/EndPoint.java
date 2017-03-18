@@ -1,13 +1,12 @@
 package com.git.wuqf.remoting;
 
 import java.net.SocketAddress;
-import java.net.URL;
 
 /**
  * Created by wuqf on 17-2-24.
  */
 public interface EndPoint {
-    URL getUrl();
+    com.git.wuqf.xiaokuo.common.URL getUrl();
 
     ChannelHandler getChannelHandler();
 

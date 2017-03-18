@@ -5,7 +5,7 @@ import com.git.wuqf.remoting.Client;
 import com.git.wuqf.remoting.Server;
 import com.git.wuqf.remoting.Transporter;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-25.

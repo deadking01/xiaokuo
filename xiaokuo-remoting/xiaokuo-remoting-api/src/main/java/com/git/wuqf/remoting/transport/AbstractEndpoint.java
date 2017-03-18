@@ -2,7 +2,7 @@ package com.git.wuqf.remoting.transport;
 
 import com.git.wuqf.remoting.ChannelHandler;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-25.

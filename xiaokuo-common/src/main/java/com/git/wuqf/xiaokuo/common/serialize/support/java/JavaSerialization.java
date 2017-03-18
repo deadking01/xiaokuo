@@ -7,7 +7,7 @@ import com.git.wuqf.xiaokuo.common.serialize.Serialization;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-26.

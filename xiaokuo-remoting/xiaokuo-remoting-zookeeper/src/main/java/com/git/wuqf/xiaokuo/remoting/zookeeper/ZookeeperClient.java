@@ -1,6 +1,6 @@
 package com.git.wuqf.xiaokuo.remoting.zookeeper;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.List;
 
 /**

@@ -15,7 +15,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;

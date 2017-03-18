@@ -1,6 +1,8 @@
 package com.git.wuqf.xiaokuo.registry;
 
 
+import com.git.wuqf.xiaokuo.common.URL;
+
 /**
  * Created by sdzn-dsj on 2016/12/15.
  */

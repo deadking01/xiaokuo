@@ -6,7 +6,7 @@ import com.git.wuqf.remoting.transport.AbstractPeer;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -86,7 +86,7 @@ public class NettyChannel extends AbstractPeer implements Channel {
     }
 
     @Override
-    public URL getUrl() {
+    public com.git.wuqf.xiaokuo.common.URL getUrl() {
         return url;
     }
 

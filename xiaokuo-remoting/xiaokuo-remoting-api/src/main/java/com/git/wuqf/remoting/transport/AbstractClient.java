@@ -5,7 +5,7 @@ import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.Client;
 
 import java.net.SocketAddress;
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-25.

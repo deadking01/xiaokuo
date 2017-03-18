@@ -13,7 +13,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-24.

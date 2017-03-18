@@ -3,6 +3,8 @@ package com.git.wuqf.xiaokuo.registry.zookeeper;
 import com.git.wuqf.xiaokuo.registry.Registry;
 import com.git.wuqf.xiaokuo.registry.support.AbstractRegistryFactory;
 
+import com.git.wuqf.xiaokuo.common.URL;
+
 
 /**
  * Created by sdzn-dsj on 2016/12/15.

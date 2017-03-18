@@ -4,7 +4,7 @@ import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.EndPoint;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-25.
@@ -53,7 +53,7 @@ public abstract class AbstractPeer implements EndPoint,ChannelHandler {
         this.channelHandler = channelHandler;
     }
 
-    public URL getUrl() {
+    public com.git.wuqf.xiaokuo.common.URL getUrl() {
         return url;
     }
 

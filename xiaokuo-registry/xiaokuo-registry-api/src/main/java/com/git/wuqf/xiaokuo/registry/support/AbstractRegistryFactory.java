@@ -5,6 +5,7 @@ import com.git.wuqf.xiaokuo.registry.RegistryFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;

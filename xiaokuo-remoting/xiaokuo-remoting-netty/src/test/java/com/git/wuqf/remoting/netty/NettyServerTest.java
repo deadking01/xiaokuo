@@ -3,7 +3,7 @@ package com.git.wuqf.remoting.netty;
 import com.git.wuqf.remoting.Server;
 
 import java.net.MalformedURLException;
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-2-25.

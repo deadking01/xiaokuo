@@ -15,10 +15,11 @@
  */
 package com.git.wuqf.xiaokuo.common.serialize;
 
+import com.git.wuqf.xiaokuo.common.URL;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URL;
 
 /**
  * Serialization. (SPI, Singleton, ThreadSafe)

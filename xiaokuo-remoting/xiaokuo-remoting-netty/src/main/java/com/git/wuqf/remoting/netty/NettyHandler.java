@@ -5,7 +5,7 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

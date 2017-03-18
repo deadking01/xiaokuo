@@ -6,7 +6,7 @@ import com.git.wuqf.remoting.Server;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import java.net.URL;
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Collection;
 
 /**

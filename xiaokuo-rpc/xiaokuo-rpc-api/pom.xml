@@ -12,4 +12,11 @@
     <artifactId>xiaokuo-rpc-api</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.git.wuqf</groupId>
+            <artifactId>xiaokuo-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

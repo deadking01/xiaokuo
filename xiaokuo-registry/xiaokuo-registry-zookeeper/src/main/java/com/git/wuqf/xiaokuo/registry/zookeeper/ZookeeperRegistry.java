@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import java.net.MalformedURLException;
+import com.git.wuqf.xiaokuo.common.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
@@ -84,7 +86,12 @@ public class ZookeeperRegistry extends AbstractRegistry {
         byte[] bs = zkClient.readData(path);
         String value = new String(bs);
 
-        URL u = new URL(value);
+        URL u = null;
+        try {
+            u = new URL(value);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         List urls = new ArrayList<>();
         urls.add(u);
         return urls;
