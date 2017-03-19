@@ -73,10 +73,10 @@ public class ChannelHandlerDispatcher implements ChannelHandler {
         }
     }
 
-    public void disConnected(Channel channel) {
+    public void disconnected(Channel channel) {
         for (ChannelHandler listener : channelHandlers) {
             try {
-                listener.disConnected(channel);
+                listener.disconnected(channel);
             } catch (Throwable t) {
                 logger.error(t.getMessage(), t);
             }

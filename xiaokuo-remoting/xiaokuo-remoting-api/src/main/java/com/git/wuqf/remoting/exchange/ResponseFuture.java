@@ -16,6 +16,8 @@
 package com.git.wuqf.remoting.exchange;
 
 
+import com.git.wuqf.remoting.RemotingException;
+
 /**
  * Future. (API/SPI, Prototype, ThreadSafe)
  * 
@@ -29,7 +31,7 @@ public interface ResponseFuture {
      * 
      * @return result.
      */
-    Object get() ;
+    Object get() throws RemotingException;
 
     /**
      * get result with the specified timeout.
@@ -37,7 +39,7 @@ public interface ResponseFuture {
      * @param timeoutInMillis timeout.
      * @return result.
      */
-    Object get(int timeoutInMillis) ;
+    Object get(int timeoutInMillis) throws RemotingException;
 
     /**
      * set callback.

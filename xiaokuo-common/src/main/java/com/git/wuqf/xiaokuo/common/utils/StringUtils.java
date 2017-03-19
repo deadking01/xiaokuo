@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.git.wuqf.xiaokuo.common;
+package com.git.wuqf.xiaokuo.common.utils;
 
 
+import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.io.UnsafeStringWriter;
 
 import java.io.PrintWriter;

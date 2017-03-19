@@ -13,25 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.git.wuqf.remoting.exchange;
+package com.git.wuqf.remoting.transport;
+
 
 import com.git.wuqf.remoting.ChannelHandler;
-import com.git.wuqf.remoting.telnet.TelnetHandler;
 
 /**
- * ExchangeHandler. (API, Prototype, ThreadSafe)
- * 
- * @author william.liangf
+ * @author chao.liuc
  */
-public interface ExchangeHandler extends ChannelHandler ,TelnetHandler {
-
-    /**
-     * reply.
-     * 
-     * @param channel
-     * @param request
-     * @return response
-     */
-    Object reply(ExchangeChannel channel, Object request);
-
+public interface ChannelHandlerDelegate extends ChannelHandler {
+    public ChannelHandler getHandler();
 }

@@ -3,10 +3,9 @@ package com.git.wuqf.remoting.netty;
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.transport.AbstractPeer;
+import com.git.wuqf.xiaokuo.common.URL;
 
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -91,7 +90,7 @@ public class NettyChannel extends AbstractPeer implements Channel {
     }
 
     @Override
-    public SocketAddress getLocalAddress() {
+    public InetSocketAddress getLocalAddress() {
         return (InetSocketAddress) channel.localAddress();
     }
 

@@ -5,11 +5,10 @@ import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.ExchangeServer;
 import com.git.wuqf.remoting.Server;
 import com.git.wuqf.remoting.exchange.ExchangeChannel;
+import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.common.utils.NamedThreadFactory;
 
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import com.git.wuqf.xiaokuo.common.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.Executors;
@@ -81,7 +80,7 @@ public class HeaderExchangeServer implements ExchangeServer{
     }
 
     @Override
-    public SocketAddress getLocalAddress() {
+    public InetSocketAddress getLocalAddress() {
         return null;
     }
 

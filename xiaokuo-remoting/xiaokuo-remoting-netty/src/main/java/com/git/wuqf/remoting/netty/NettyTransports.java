@@ -17,7 +17,7 @@ public class NettyTransports implements Transporter {
     }
 
     @Override
-    public Client Connect(URL url, ChannelHandler channelHandler) {
+    public Client connect(URL url, ChannelHandler channelHandler) {
         return new NettyClient(url,channelHandler);
     }
 }

@@ -15,6 +15,8 @@ import io.netty.handler.logging.LoggingHandler;
 
 import com.git.wuqf.xiaokuo.common.URL;
 
+import java.net.InetSocketAddress;
+
 /**
  * Created by wuqf on 17-2-24.
  */
@@ -69,7 +71,7 @@ public class NettyClient extends AbstractClient {
     }
 
     @Override
-    protected void doDisConnect() {
+    protected void doDisconnect() {
         NettyChannel.removeChannelIfDisconnected(channel);
     }
 
@@ -78,5 +80,33 @@ public class NettyClient extends AbstractClient {
         return NettyChannel.getOrAddChannel(channel, getUrl(), this);
     }
 
+    @Override
+    public InetSocketAddress getRemoteAddress() {
+        return null;
+    }
 
+    @Override
+    public boolean isConnected() {
+        return false;
+    }
+
+    @Override
+    public boolean hasAttribute(String key) {
+        return false;
+    }
+
+    @Override
+    public Object getAttribute(String key) {
+        return null;
+    }
+
+    @Override
+    public void setAttribute(String key, Object value) {
+
+    }
+
+    @Override
+    public void removeAttribute(String key) {
+
+    }
 }

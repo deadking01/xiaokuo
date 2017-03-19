@@ -14,7 +14,7 @@ public class WordHandler implements ChannelHandler {
     }
 
     @Override
-    public void disConnected(Channel channel) {
+    public void disconnected(Channel channel) {
 
     }
 

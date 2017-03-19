@@ -17,6 +17,7 @@ package com.git.wuqf.xiaokuo.common;
 
 import com.git.wuqf.xiaokuo.common.utils.CollectionUtils;
 import com.git.wuqf.xiaokuo.common.utils.NetUtils;
+import com.git.wuqf.xiaokuo.common.utils.StringUtils;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;

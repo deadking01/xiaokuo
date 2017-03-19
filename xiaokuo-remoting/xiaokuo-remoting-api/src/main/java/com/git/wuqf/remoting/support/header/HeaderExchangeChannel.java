@@ -9,8 +9,6 @@ import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
 
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-//import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * Created by wuqf on 17-3-18.
@@ -91,7 +89,7 @@ public class HeaderExchangeChannel implements ExchangeChannel {
     }
 
     @Override
-    public SocketAddress getLocalAddress() {
+    public InetSocketAddress getLocalAddress() {
         return null;
     }
 
@@ -113,5 +111,25 @@ public class HeaderExchangeChannel implements ExchangeChannel {
     @Override
     public boolean isClosed() {
         return false;
+    }
+
+    static HeaderExchangeChannel getOrAddChannel(Channel ch) {
+        if (ch == null) {
+            return null;
+        }
+        HeaderExchangeChannel ret = (HeaderExchangeChannel) ch.getAttribute(CHANNEL_KEY);
+        if (ret == null) {
+            ret = new HeaderExchangeChannel(ch);
+            if (ch.isConnected()) {
+                ch.setAttribute(CHANNEL_KEY, ret);
+            }
+        }
+        return ret;
+    }
+
+    static void removeChannelIfDisconnected(Channel ch) {
+        if (ch != null && ! ch.isConnected()) {
+            ch.removeAttribute(CHANNEL_KEY);
+        }
     }
 }

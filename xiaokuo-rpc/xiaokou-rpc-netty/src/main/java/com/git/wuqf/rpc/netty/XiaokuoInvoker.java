@@ -1,6 +1,7 @@
 package com.git.wuqf.rpc.netty;
 
 import com.git.wuqf.remoting.ExchangeClient;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.rpc.*;
 import com.git.wuqf.rpc.protocol.AbstractInvoker;
 
@@ -22,7 +23,7 @@ public class XiaokuoInvoker<T> extends AbstractInvoker {
         this.invokers = invokers;
     }
     @Override
-    protected Result doInvoke(Invocation invocation) {
+    protected Result doInvoke(Invocation invocation) throws RemotingException {
         RpcInvocation inv=(RpcInvocation)invocation;
         final String methodName=inv.getMethodName();
         ExchangeClient currentClient=clients[0];

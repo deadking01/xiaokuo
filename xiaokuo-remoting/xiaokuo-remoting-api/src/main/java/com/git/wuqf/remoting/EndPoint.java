@@ -1,6 +1,6 @@
 package com.git.wuqf.remoting;
 
-import java.net.SocketAddress;
+import java.net.InetSocketAddress;
 
 /**
  * Created by wuqf on 17-2-24.
@@ -10,15 +10,15 @@ public interface EndPoint {
 
     ChannelHandler getChannelHandler();
 
-    SocketAddress getLocalAddress();
+    InetSocketAddress getLocalAddress();
 
     /**
      * @param message
      * @param sent    消息是否发送完成
      */
-    void send(Object message, boolean sent);
+    void send(Object message, boolean sent) throws RemotingException;
 
-    void send(Object message);
+    void send(Object message) throws RemotingException;
 
     void close();
 

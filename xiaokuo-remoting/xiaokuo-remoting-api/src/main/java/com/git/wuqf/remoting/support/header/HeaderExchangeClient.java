@@ -1,127 +1,171 @@
 package com.git.wuqf.remoting.support.header;
 
-import com.git.wuqf.remoting.ChannelHandler;
-import com.git.wuqf.remoting.Client;
-import com.git.wuqf.remoting.ExchangeClient;
+import com.git.wuqf.remoting.*;
 import com.git.wuqf.remoting.exchange.ExchangeChannel;
 import com.git.wuqf.remoting.exchange.ExchangeHandler;
 import com.git.wuqf.remoting.exchange.ResponseFuture;
+import com.git.wuqf.xiaokuo.common.Constants;
+import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.common.utils.NamedThreadFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetSocketAddress;
-import java.net.SocketAddress;
-import com.git.wuqf.xiaokuo.common.URL;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by wuqf on 17-3-18.
  */
 public class HeaderExchangeClient implements ExchangeClient {
 
-    private static final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(2, new NamedThreadFactory("xiaokuo-remoting-client-heartbeat", true));
-    private ScheduledFuture<?> heartbeatTimer;
+    private static final Logger logger = LoggerFactory.getLogger( HeaderExchangeClient.class );
 
-    //心跳超时时间，默认为0，不执行
+    private static final ScheduledThreadPoolExecutor scheduled = new ScheduledThreadPoolExecutor(2, new NamedThreadFactory("dubbo-remoting-client-heartbeat", true));
+
+    // 心跳定时器
+    private ScheduledFuture<?> heatbeatTimer;
+
+    // 心跳超时，毫秒。缺省0，不会执行心跳。
     private int heartbeat;
+
     private int heartbeatTimeout;
 
-    private Client client;
+    private final Client client;
 
-    private ExchangeChannel channel;
+    private final ExchangeChannel channel;
 
-    @Override
+    public HeaderExchangeClient(Client client){
+        if (client == null) {
+            throw new IllegalArgumentException("client == null");
+        }
+        this.client = client;
+        this.channel = new HeaderExchangeChannel(client);
+        String dubbo = client.getUrl().getParameter(Constants.DUBBO_VERSION_KEY);
+        this.heartbeat = client.getUrl().getParameter( Constants.HEARTBEAT_KEY, dubbo != null && dubbo.startsWith("1.0.") ? Constants.DEFAULT_HEARTBEAT : 0 );
+        this.heartbeatTimeout = client.getUrl().getParameter( Constants.HEARTBEAT_TIMEOUT_KEY, heartbeat * 3 );
+        if ( heartbeatTimeout < heartbeat * 2 ) {
+            throw new IllegalStateException( "heartbeatTimeout < heartbeatInterval * 2" );
+        }
+        startHeatbeatTimer();
+    }
+
+    public ResponseFuture request(Object request) throws RemotingException {
+        return channel.request(request);
+    }
+
+    public URL getUrl() {
+        return channel.getUrl();
+    }
+
     public InetSocketAddress getRemoteAddress() {
         return channel.getRemoteAddress();
     }
 
-    @Override
-    public boolean isConnected() {
-        return channel.isConnected();
+    public ResponseFuture request(Object request, int timeout) throws RemotingException {
+        return channel.request(request, timeout);
     }
 
-    @Override
-    public boolean hasAttribute(String key) {
-        return false;
-    }
-
-    @Override
-    public Object getAttribute(String key) {
-        return null;
-    }
-
-    @Override
-    public void setAttribute(String key, Object value) {
-
-    }
-
-    @Override
-    public void removeAttribute(String key) {
-
-    }
-
-    @Override
-    public void reconnected() {
-
-    }
-
-    @Override
-    public ResponseFuture request(Object request) {
-        return channel.request(request);
-    }
-
-    @Override
-    public ResponseFuture request(Object request, int timeout) {
-        return channel.request(request,timeout);
-    }
-
-    @Override
-    public ExchangeHandler getExchangeHandler() {
-        return channel.getExchangeHandler();
-    }
-
-    @Override
-    public com.git.wuqf.xiaokuo.common.URL getUrl() {
-        return channel.getUrl();
-    }
-
-    @Override
     public ChannelHandler getChannelHandler() {
         return channel.getChannelHandler();
     }
 
-    @Override
-    public SocketAddress getLocalAddress() {
+    public boolean isConnected() {
+        return channel.isConnected();
+    }
+
+    public InetSocketAddress getLocalAddress() {
         return channel.getLocalAddress();
     }
 
-    @Override
-    public void send(Object message, boolean sent) {
-        channel.send(message, sent);
+    public ExchangeHandler getExchangeHandler() {
+        return channel.getExchangeHandler();
     }
 
-    @Override
-    public void send(Object message) {
+    public void send(Object message) throws RemotingException {
         channel.send(message);
     }
 
-    @Override
-    public void close() {
-        channel.close();
+    public void send(Object message, boolean sent) throws RemotingException {
+        channel.send(message, sent);
     }
 
-    @Override
-    public void close(int timeout) {
-        channel.close(timeout);
-    }
-
-    @Override
     public boolean isClosed() {
         return channel.isClosed();
     }
 
-    @Override
+    public void close() {
+        doClose();
+        channel.close();
+    }
+
+    public void close(int timeout) {
+        doClose();
+        channel.close(timeout);
+    }
+
     public void reset(URL url) {
         client.reset(url);
+    }
+
+
+
+    public void reconnect() throws RemotingException {
+        client.reconnect();
+    }
+
+    public Object getAttribute(String key) {
+        return channel.getAttribute(key);
+    }
+
+    public void setAttribute(String key, Object value) {
+        channel.setAttribute(key, value);
+    }
+
+    public void removeAttribute(String key) {
+        channel.removeAttribute(key);
+    }
+
+    public boolean hasAttribute(String key) {
+        return channel.hasAttribute(key);
+    }
+
+    private void startHeatbeatTimer() {
+        stopHeartbeatTimer();
+        if ( heartbeat > 0 ) {
+            heatbeatTimer = scheduled.scheduleWithFixedDelay(
+                    new HeartBeatTask( new HeartBeatTask.ChannelProvider() {
+                        public Collection<Channel> getChannels() {
+                            return Collections.<Channel>singletonList( HeaderExchangeClient.this );
+                        }
+                    }, heartbeat, heartbeatTimeout),
+                    heartbeat, heartbeat, TimeUnit.MILLISECONDS );
+        }
+    }
+
+    private void stopHeartbeatTimer() {
+        if (heatbeatTimer != null && ! heatbeatTimer.isCancelled()) {
+            try {
+                heatbeatTimer.cancel(true);
+                scheduled.purge();
+            } catch ( Throwable e ) {
+                if (logger.isWarnEnabled()) {
+                    logger.warn(e.getMessage(), e);
+                }
+            }
+        }
+        heatbeatTimer =null;
+    }
+
+    private void doClose() {
+        stopHeartbeatTimer();
+    }
+
+    @Override
+    public String toString() {
+        return "HeaderExchangeClient [channel=" + channel + "]";
     }
 }

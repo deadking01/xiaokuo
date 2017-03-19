@@ -1,11 +1,12 @@
 package com.git.wuqf.rpc.protocol;
 
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.rpc.Invocation;
 import com.git.wuqf.rpc.Invoker;
 import com.git.wuqf.rpc.Result;
 import com.git.wuqf.rpc.RpcInvocation;
-
 import com.git.wuqf.xiaokuo.common.URL;
+
 import java.util.Map;
 
 /**
@@ -40,9 +41,9 @@ public abstract class AbstractInvoker<T> implements Invoker{
     }
 
     @Override
-    public Result invoke(Invocation inv){
+    public Result invoke(Invocation inv) throws RemotingException {
         RpcInvocation invocation = (RpcInvocation) inv;
         return doInvoke(invocation);
     }
-    protected abstract Result doInvoke(Invocation invocation);
+    protected abstract Result doInvoke(Invocation invocation) throws RemotingException;
 }

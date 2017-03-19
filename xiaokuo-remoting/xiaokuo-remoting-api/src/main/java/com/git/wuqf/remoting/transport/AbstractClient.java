@@ -3,9 +3,10 @@ package com.git.wuqf.remoting.transport;
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.Client;
-
-import java.net.SocketAddress;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.xiaokuo.common.URL;
+
+import java.net.InetSocketAddress;
 
 /**
  * Created by wuqf on 17-2-25.
@@ -24,19 +25,19 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client,
     }
 
     @Override
-    public SocketAddress getLocalAddress() {
+    public InetSocketAddress getLocalAddress() {
         Channel channel=getChannel();
         return channel.getRemoteAddress();
     }
 
     @Override
-    public void send(Object message, boolean sent) {
+    public void send(Object message, boolean sent) throws RemotingException {
         Channel channel = getChannel();
         channel.send(message,sent);
     }
 
     @Override
-    public void send(Object message) {
+    public void send(Object message) throws RemotingException {
         Channel channel = getChannel();
         channel.send(message);
     }
@@ -50,7 +51,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client,
         }
     }
     @Override
-    public void reconnected() {
+    public void reconnect() {
         disconnect();
         connect();
     }
@@ -83,7 +84,7 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client,
      *
      * @
      */
-    protected abstract void doDisConnect() ;
+    protected abstract void doDisconnect() ;
 
     protected abstract Channel getChannel();
 }

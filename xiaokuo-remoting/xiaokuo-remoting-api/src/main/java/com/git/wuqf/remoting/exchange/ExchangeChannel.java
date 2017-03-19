@@ -17,6 +17,7 @@ package com.git.wuqf.remoting.exchange;
 
 
 import com.git.wuqf.remoting.Channel;
+import com.git.wuqf.remoting.RemotingException;
 
 /**
  * ExchangeChannel. (API/SPI, Prototype, ThreadSafe)
@@ -31,7 +32,7 @@ public interface ExchangeChannel extends Channel {
      * @param request
      * @return response future
      */
-    ResponseFuture request(Object request) ;
+    ResponseFuture request(Object request) throws RemotingException;
 
     /**
      * send request.
@@ -40,7 +41,7 @@ public interface ExchangeChannel extends Channel {
      * @param timeout
      * @return response future
      */
-    ResponseFuture request(Object request, int timeout) ;
+    ResponseFuture request(Object request, int timeout) throws RemotingException;
 
     /**
      * get message handler.

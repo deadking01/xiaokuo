@@ -106,7 +106,7 @@ public class ExchangeHandlerDispatcher implements ExchangeHandler {
     }
 
     @Override
-    public void disConnected(Channel channel) {
-        handlerDispatcher.disConnected(channel);
+    public void disconnected(Channel channel) {
+        handlerDispatcher.disconnected(channel);
     }
 }

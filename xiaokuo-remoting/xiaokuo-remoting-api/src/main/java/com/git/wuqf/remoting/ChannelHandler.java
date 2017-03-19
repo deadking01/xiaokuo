@@ -17,7 +17,7 @@ public interface ChannelHandler {
      *
      * @param channel
      */
-    void disConnected(Channel channel);
+    void disconnected(Channel channel);
 
     /**
      * on message sent
@@ -25,7 +25,7 @@ public interface ChannelHandler {
      * @param channel
      * @param message
      */
-    void sent(Channel channel, Object message);
+    void sent(Channel channel, Object message) throws RemotingException;
 
     /**
      * on message received
@@ -33,7 +33,7 @@ public interface ChannelHandler {
      * @param channel
      * @param message
      */
-    void received(Channel channel, Object message);
+    void received(Channel channel, Object message) throws RemotingException;
 
     /**
      * on exception caught
@@ -41,5 +41,5 @@ public interface ChannelHandler {
      * @param channel
      * @param exception
      */
-    void caught(Channel channel, Throwable exception);
+    void caught(Channel channel, Throwable exception) throws RemotingException;
 }

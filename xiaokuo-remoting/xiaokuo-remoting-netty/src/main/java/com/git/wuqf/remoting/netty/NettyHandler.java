@@ -1,6 +1,7 @@
 package com.git.wuqf.remoting.netty;
 
 import com.git.wuqf.remoting.ChannelHandler;
+import com.git.wuqf.remoting.RemotingException;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -27,7 +28,7 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws RemotingException {
         NettyChannel channel=NettyChannel.getOrAddChannel(ctx.channel(),url,handler);
         handler.received(channel,msg);
     }

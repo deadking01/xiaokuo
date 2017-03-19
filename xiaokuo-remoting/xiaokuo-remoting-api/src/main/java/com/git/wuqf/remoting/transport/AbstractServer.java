@@ -2,20 +2,21 @@ package com.git.wuqf.remoting.transport;
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.Server;
+import com.git.wuqf.xiaokuo.common.URL;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-import com.git.wuqf.xiaokuo.common.URL;
 import java.util.Collection;
 
 /**
  * Created by wuqf on 17-2-25.
  */
 public abstract class AbstractServer extends AbstractEndpoint implements Server {
-    private SocketAddress localAddress;
+    private InetSocketAddress localAddress;
 
-    private SocketAddress bindAddress;
+    private InetSocketAddress bindAddress;
 
     private int accepts;
 
@@ -47,12 +48,12 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
     }
 
     @Override
-    public SocketAddress getLocalAddress() {
+    public InetSocketAddress getLocalAddress() {
         return localAddress;
     }
 
     @Override
-    public void send(Object message, boolean sent) {
+    public void send(Object message, boolean sent) throws RemotingException {
         Collection<Channel> channels = getChannels();
         for(Channel channel :channels){
             channel.send(message,sent);
@@ -60,7 +61,7 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
     }
 
     @Override
-    public void send(Object message) {
+    public void send(Object message) throws RemotingException {
         Collection<Channel> channels = getChannels();
         for(Channel channel :channels){
             channel.send(message);

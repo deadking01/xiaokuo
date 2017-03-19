@@ -17,5 +17,10 @@
             <artifactId>xiaokuo-registry-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.git.wuqf</groupId>
+            <artifactId>xiaokuo-remoting-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

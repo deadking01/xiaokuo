@@ -4,6 +4,7 @@ import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.EndPoint;
 
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.xiaokuo.common.URL;
 
 /**
@@ -26,22 +27,18 @@ public abstract class AbstractPeer implements EndPoint,ChannelHandler {
     }
 
    
-    public void disConnected(Channel channel) {
-        channelHandler.disConnected(channel);
-    }
 
-   
-    public void sent(Channel channel, Object message) {
+    public void sent(Channel channel, Object message) throws RemotingException {
         channelHandler.sent(channel, message);
     }
 
    
-    public void received(Channel channel, Object message) {
+    public void received(Channel channel, Object message) throws RemotingException {
         channelHandler.received(channel, message);
     }
 
    
-    public void caught(Channel channel, Throwable exception) {
+    public void caught(Channel channel, Throwable exception) throws RemotingException {
         channelHandler.caught(channel, exception);
     }
 
@@ -62,7 +59,7 @@ public abstract class AbstractPeer implements EndPoint,ChannelHandler {
     }
 
     public void disconnected(Channel ch) {
-        channelHandler.disConnected(ch);
+        channelHandler.disconnected(ch);
     }
 
     

@@ -2,6 +2,7 @@ package com.git.wuqf.remoting.transport;
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
+import com.git.wuqf.remoting.RemotingException;
 
 /**
  * Created by wuqf on 17-2-26.
@@ -19,17 +20,17 @@ public class DecodeHandler implements ChannelHandler{
     }
 
     @Override
-    public void disConnected(Channel channel) {
-        handler.disConnected(channel);
+    public void disconnected(Channel channel) {
+        handler.disconnected(channel);
     }
 
     @Override
-    public void sent(Channel channel, Object message) {
+    public void sent(Channel channel, Object message) throws RemotingException {
         handler.sent(channel,message);
     }
 
     @Override
-    public void received(Channel channel, Object message) {
+    public void received(Channel channel, Object message) throws RemotingException {
         handler.received(channel,message);
     }
 
