@@ -1,4 +1,4 @@
-package com.git.wuqf.rpc.netty;
+package com.git.wuqf.rpc.protocol.xiaokuo;
 
 import com.git.wuqf.remoting.ExchangeClient;
 import com.git.wuqf.remoting.RemotingException;
