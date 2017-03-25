@@ -22,7 +22,7 @@ public abstract class AbstractPeer implements EndPoint,ChannelHandler {
     }
 
    
-    public void connected(Channel channel) {
+    public void connected(Channel channel) throws RemotingException {
         channelHandler.connected(channel);
     }
 
@@ -58,7 +58,7 @@ public abstract class AbstractPeer implements EndPoint,ChannelHandler {
         return channelHandler;
     }
 
-    public void disconnected(Channel ch) {
+    public void disconnected(Channel ch) throws RemotingException {
         channelHandler.disconnected(ch);
     }
 

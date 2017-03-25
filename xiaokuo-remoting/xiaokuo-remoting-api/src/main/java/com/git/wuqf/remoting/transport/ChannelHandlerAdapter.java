@@ -17,6 +17,7 @@ package com.git.wuqf.remoting.transport;
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
+import com.git.wuqf.remoting.RemotingException;
 
 /**
  * ChannelHandlerAdapter.
@@ -26,12 +27,12 @@ import com.git.wuqf.remoting.ChannelHandler;
 public class ChannelHandlerAdapter implements ChannelHandler {
 
     @Override
-    public void connected(Channel channel) {
+    public void connected(Channel channel) throws RemotingException {
 
     }
 
     @Override
-    public void disconnected(Channel channel) {
+    public void disconnected(Channel channel) throws RemotingException {
 
     }
 
@@ -41,7 +42,7 @@ public class ChannelHandlerAdapter implements ChannelHandler {
     }
 
     @Override
-    public void received(Channel channel, Object message) {
+    public void received(Channel channel, Object message) throws RemotingException {
 
     }
 

@@ -15,12 +15,12 @@ public class DecodeHandler implements ChannelHandler{
         this.handler=channelHandler;
     }
     @Override
-    public void connected(Channel channel) {
+    public void connected(Channel channel) throws RemotingException {
         handler.connected(channel);
     }
 
     @Override
-    public void disconnected(Channel channel) {
+    public void disconnected(Channel channel) throws RemotingException {
         handler.disconnected(channel);
     }
 

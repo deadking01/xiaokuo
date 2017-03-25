@@ -13,25 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.git.wuqf.remoting.telnet;
+package com.git.wuqf.remoting.telnet.support;
 
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.RemotingException;
+import com.git.wuqf.remoting.telnet.TelnetHandler;
+import com.git.wuqf.remoting.transport.ChannelHandlerAdapter;
+import com.git.wuqf.xiaokuo.common.Constants;
 
 /**
- * TelnetHandler
- * 
  * @author william.liangf
  */
-public interface TelnetHandler {
+public class TelnetHandlerAdapter extends ChannelHandlerAdapter implements TelnetHandler {
 
-    /**
-     * telnet.
-     * 
-     * @param channel
-     * @param message
-     */
-    String telnet(Channel channel, String message) throws RemotingException;
+
+    public String telnet(Channel channel, String message) throws RemotingException {
+        return "service fuck up";
+    }
 
 }

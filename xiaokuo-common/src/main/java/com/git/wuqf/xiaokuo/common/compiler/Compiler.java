@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.git.wuqf.remoting.telnet;
+package com.git.wuqf.xiaokuo.common.compiler;
 
 
-import com.git.wuqf.remoting.Channel;
-import com.git.wuqf.remoting.RemotingException;
+import com.git.wuqf.xiaokuo.common.extension.SPI;
 
 /**
- * TelnetHandler
+ * Compiler. (SPI, Singleton, ThreadSafe)
  * 
  * @author william.liangf
  */
-public interface TelnetHandler {
+@SPI("javassist")
+public interface Compiler {
 
-    /**
-     * telnet.
-     * 
-     * @param channel
-     * @param message
-     */
-    String telnet(Channel channel, String message) throws RemotingException;
+	/**
+	 * Compile java source code.
+	 * 
+	 * @param code Java source code
+	 * @param classLoader TODO
+	 * @return Compiled class
+	 */
+	Class<?> compile(String code, ClassLoader classLoader);
 
 }

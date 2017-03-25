@@ -16,6 +16,7 @@
 package com.git.wuqf.remoting.exchange;
 
 import com.git.wuqf.remoting.ChannelHandler;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.telnet.TelnetHandler;
 
 /**
@@ -32,6 +33,6 @@ public interface ExchangeHandler extends ChannelHandler ,TelnetHandler {
      * @param request
      * @return response
      */
-    Object reply(ExchangeChannel channel, Object request);
+    Object reply(ExchangeChannel channel, Object request) throws RemotingException;
 
 }

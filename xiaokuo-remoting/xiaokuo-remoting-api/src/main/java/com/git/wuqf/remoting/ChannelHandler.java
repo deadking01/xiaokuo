@@ -10,14 +10,14 @@ public interface ChannelHandler {
      *
      * @param channel
      */
-    void connected(Channel channel);
+    void connected(Channel channel) throws RemotingException;
 
     /**
      * one channel disconnected
      *
      * @param channel
      */
-    void disconnected(Channel channel);
+    void disconnected(Channel channel) throws RemotingException;
 
     /**
      * on message sent

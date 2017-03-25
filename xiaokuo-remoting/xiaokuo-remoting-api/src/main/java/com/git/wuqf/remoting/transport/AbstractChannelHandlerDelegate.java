@@ -23,11 +23,11 @@ public abstract class AbstractChannelHandlerDelegate implements ChannelHandlerDe
         return handler;
     }
 
-    public void connected(Channel channel)  {
+    public void connected(Channel channel) throws RemotingException {
         handler.connected(channel);
     }
 
-    public void disconnected(Channel channel)  {
+    public void disconnected(Channel channel) throws RemotingException {
         handler.disconnected(channel);
     }
 

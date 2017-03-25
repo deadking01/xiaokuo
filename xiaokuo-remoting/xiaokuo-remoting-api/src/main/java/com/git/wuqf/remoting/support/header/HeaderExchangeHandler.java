@@ -104,6 +104,8 @@ public class HeaderExchangeHandler implements ChannelHandlerDelegate {
         ExchangeChannel exchangeChannel = HeaderExchangeChannel.getOrAddChannel(channel);
         try {
             handler.connected(exchangeChannel);
+        } catch (RemotingException e) {
+            e.printStackTrace();
         } finally {
             HeaderExchangeChannel.removeChannelIfDisconnected(channel);
         }
@@ -115,6 +117,8 @@ public class HeaderExchangeHandler implements ChannelHandlerDelegate {
         ExchangeChannel exchangeChannel = HeaderExchangeChannel.getOrAddChannel(channel);
         try {
             handler.disconnected(exchangeChannel);
+        } catch (RemotingException e) {
+            e.printStackTrace();
         } finally {
             HeaderExchangeChannel.removeChannelIfDisconnected(channel);
         }

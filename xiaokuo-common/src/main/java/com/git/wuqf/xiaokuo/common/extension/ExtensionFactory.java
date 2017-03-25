@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2011 Alibaba Group.
+ * Copyright 1999-2012 Alibaba Group.
  *  
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.git.wuqf.remoting.telnet;
-
-
-import com.git.wuqf.remoting.Channel;
-import com.git.wuqf.remoting.RemotingException;
+package com.git.wuqf.xiaokuo.common.extension;
 
 /**
- * TelnetHandler
+ * ExtensionFactory
  * 
  * @author william.liangf
+ * @export
  */
-public interface TelnetHandler {
+@SPI
+public interface ExtensionFactory {
 
     /**
-     * telnet.
+     * Get extension.
      * 
-     * @param channel
-     * @param message
+     * @param type object type.
+     * @param name object name.
+     * @return object instance.
      */
-    String telnet(Channel channel, String message) throws RemotingException;
+    <T> T getExtension(Class<T> type, String name);
 
 }

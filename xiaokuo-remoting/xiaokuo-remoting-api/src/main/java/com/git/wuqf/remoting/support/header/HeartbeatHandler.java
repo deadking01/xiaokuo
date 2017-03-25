@@ -42,13 +42,13 @@ public class HeartbeatHandler extends AbstractChannelHandlerDelegate {
         super(handler);
     }
 
-    public void connected(Channel channel)  {
+    public void connected(Channel channel) throws RemotingException {
         setReadTimestamp(channel);
         setWriteTimestamp(channel);
         handler.connected(channel);
     }
 
-    public void disconnected(Channel channel)  {
+    public void disconnected(Channel channel) throws RemotingException {
         clearReadTimestamp(channel);
         clearWriteTimestamp(channel);
         handler.disconnected(channel);
