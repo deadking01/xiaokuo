@@ -18,6 +18,7 @@ package com.git.wuqf.remoting.support.header;
 
 import com.git.wuqf.remoting.ExchangeClient;
 import com.git.wuqf.remoting.ExchangeServer;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.Transporters;
 import com.git.wuqf.remoting.exchange.ExchangeHandler;
 import com.git.wuqf.remoting.exchange.Exchanger;
@@ -33,11 +34,11 @@ public class HeaderExchanger implements Exchanger {
     
     public static final String NAME = "header";
 
-    public ExchangeClient connect(URL url, ExchangeHandler handler)  {
+    public ExchangeClient connect(URL url, ExchangeHandler handler) throws RemotingException {
         return new HeaderExchangeClient(Transporters.connect(url, new DecodeHandler(new HeaderExchangeHandler(handler))));
     }
 
-    public ExchangeServer bind(URL url, ExchangeHandler handler)  {
+    public ExchangeServer bind(URL url, ExchangeHandler handler) throws RemotingException {
         return new HeaderExchangeServer(Transporters.bind(url, new DecodeHandler(new HeaderExchangeHandler(handler))));
     }
 

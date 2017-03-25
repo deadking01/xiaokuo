@@ -86,7 +86,7 @@ class ChannelWrappedInvoker<T> extends AbstractInvoker<T> {
 
         public ChannelWrapper(Channel channel) {
             this.channel = channel;
-            this.url = channel.getUrl().addParameter("codec", DubboCodec.NAME);
+            this.url = channel.getUrl().addParameter("codec", XiaokuoCodec.NAME);
         }
 
         public URL getUrl() {

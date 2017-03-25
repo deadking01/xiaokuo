@@ -73,7 +73,7 @@ public class ExchangeCodec extends TelnetCodec {
         return MAGIC;
     }
 
-    public void encode(Channel channel, ChannelBuffer buffer, Object msg) throws IOException {
+    public void encode(Channel channel, ChannelBuffer buffer, Object msg) throws IOException, RemotingException {
         if (msg instanceof Request) {
             encodeRequest(channel, buffer, (Request) msg);
         } else if (msg instanceof Response) {
@@ -212,7 +212,7 @@ public class ExchangeCodec extends TelnetCodec {
         return req.getData();
     }
 
-    protected void encodeRequest(Channel channel, ChannelBuffer buffer, Request req) throws IOException {
+    protected void encodeRequest(Channel channel, ChannelBuffer buffer, Request req) throws IOException, RemotingException {
         Serialization serialization = getSerialization(channel);
         // header.
         byte[] header = new byte[HEADER_LENGTH];
@@ -408,7 +408,7 @@ public class ExchangeCodec extends TelnetCodec {
     }
 
     @Override
-    protected void encodeData(Channel channel, ObjectOutput out, Object data) throws IOException {
+    protected void encodeData(Channel channel, ObjectOutput out, Object data) throws IOException, RemotingException {
         encodeRequestData(channel, out, data);
     }
 
@@ -421,7 +421,7 @@ public class ExchangeCodec extends TelnetCodec {
         encodeHeartbeatData(out, data);
     }
 
-    protected void encodeRequestData(Channel channel, ObjectOutput out, Object data) throws IOException {
+    protected void encodeRequestData(Channel channel, ObjectOutput out, Object data) throws IOException, RemotingException {
         encodeRequestData(out, data);
     }
 

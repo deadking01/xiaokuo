@@ -27,11 +27,11 @@ import com.git.wuqf.xiaokuo.common.URL;
  */
 public class Transporters {
 
-    public static Server bind(String url, ChannelHandler... handler)  {
+    public static Server bind(String url, ChannelHandler... handler) throws RemotingException {
         return bind(URL.valueOf(url), handler);
     }
 
-    public static Server bind(URL url, ChannelHandler... handlers)  {
+    public static Server bind(URL url, ChannelHandler... handlers) throws RemotingException {
         if (url == null) {
             throw new IllegalArgumentException("url == null");
         }
@@ -47,11 +47,11 @@ public class Transporters {
         return getTransporter().bind(url, handler);
     }
 
-    public static Client connect(String url, ChannelHandler... handler)  {
+    public static Client connect(String url, ChannelHandler... handler) throws RemotingException {
         return connect(URL.valueOf(url), handler);
     }
 
-    public static Client connect(URL url, ChannelHandler... handlers)  {
+    public static Client connect(URL url, ChannelHandler... handlers) throws RemotingException {
         if (url == null) {
             throw new IllegalArgumentException("url == null");
         }

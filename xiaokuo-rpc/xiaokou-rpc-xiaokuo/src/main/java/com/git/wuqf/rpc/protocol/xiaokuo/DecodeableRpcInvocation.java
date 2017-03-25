@@ -96,8 +96,8 @@ public class DecodeableRpcInvocation extends RpcInvocation implements Codec, Dec
             Class<?>[] pts;
             String desc = in.readUTF();
             if (desc.length() == 0) {
-                pts = DubboCodec.EMPTY_CLASS_ARRAY;
-                args = DubboCodec.EMPTY_OBJECT_ARRAY;
+                pts = XiaokuoCodec.EMPTY_CLASS_ARRAY;
+                args = XiaokuoCodec.EMPTY_OBJECT_ARRAY;
             } else {
                 pts = ReflectUtils.desc2classArray(desc);
                 args = new Object[pts.length];

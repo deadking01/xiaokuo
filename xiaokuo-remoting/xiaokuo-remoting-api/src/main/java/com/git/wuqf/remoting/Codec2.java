@@ -25,7 +25,7 @@ import java.io.IOException;
  */
 public interface Codec2 {
 
-    void encode(Channel channel, ChannelBuffer buffer, Object message) throws IOException;
+    void encode(Channel channel, ChannelBuffer buffer, Object message) throws IOException, RemotingException;
 
     Object decode(Channel channel, ChannelBuffer buffer) throws IOException;
 

@@ -1,5 +1,6 @@
 package com.git.wuqf.rpc;
 
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.xiaokuo.common.URL;
 
 /**
@@ -8,9 +9,9 @@ import com.git.wuqf.xiaokuo.common.URL;
 public interface Protocol {
     int getDefaultPort();
 
-    <T> Exporter<T> export(Invoker<T> invoker);
+    <T> Exporter<T> export(Invoker<T> invoker) throws RemotingException;
 
-    <T> Invoker<T> refer(Class<T> type, URL url);
+    <T> Invoker<T> refer(Class<T> type, URL url) throws RemotingException;
 
     void destory();
 }

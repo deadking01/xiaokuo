@@ -3,6 +3,7 @@ package com.git.wuqf.remoting.exchange;
 import com.git.wuqf.remoting.ExchangeClient;
 import com.git.wuqf.remoting.ExchangeServer;
 
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.xiaokuo.common.URL;
 
 /**
@@ -10,7 +11,7 @@ import com.git.wuqf.xiaokuo.common.URL;
  */
 public interface Exchanger {
 
-    ExchangeServer bind(URL url, ExchangeHandler handler);
+    ExchangeServer bind(URL url, ExchangeHandler handler) throws RemotingException;
 
-    ExchangeClient connect(URL url, ExchangeHandler handler);
+    ExchangeClient connect(URL url, ExchangeHandler handler) throws RemotingException;
 }

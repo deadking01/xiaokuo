@@ -74,7 +74,7 @@ class CallbackServiceCodec {
      * @throws IOException
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    private static String exportOrunexportCallbackService(Channel channel, URL url, Class clazz, Object inst, Boolean export) throws IOException{
+    private static String exportOrunexportCallbackService(Channel channel, URL url, Class clazz, Object inst, Boolean export) throws IOException, RemotingException {
         int instid = System.identityHashCode(inst);
         
         Map<String,String> params = new HashMap<String,String>(3);
@@ -232,7 +232,7 @@ class CallbackServiceCodec {
         }
     }
     
-    public static Object encodeInvocationArgument(Channel channel, RpcInvocation inv, int paraIndex) throws IOException{
+    public static Object encodeInvocationArgument(Channel channel, RpcInvocation inv, int paraIndex) throws IOException, RemotingException {
         //encode时可直接获取url
         URL url = inv.getInvoker() == null ? null : inv.getInvoker().getUrl();
         byte callbackstatus = isCallBack(url, inv.getMethodName(), paraIndex);

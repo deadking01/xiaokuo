@@ -191,7 +191,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         return DEFAULT_PORT;
     }
 
-    public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
+    public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException, RemotingException {
         URL url = invoker.getUrl();
 
         // export service.
@@ -219,7 +219,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         return exporter;
     }
 
-    private void openServer(URL url) {
+    private void openServer(URL url) throws RemotingException {
         // find server.
         String key = url.getAddress();
         //client 也可以暴露一个只有server可以调用的服务。
@@ -235,7 +235,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         }
     }
 
-    private ExchangeServer createServer(URL url) {
+    private ExchangeServer createServer(URL url) throws RemotingException {
         //默认开启server关闭时发送readonly事件
         url = url.addParameterIfAbsent(Constants.CHANNEL_READONLYEVENT_SENT_KEY, Boolean.TRUE.toString());
         //默认开启heartbeat
@@ -245,7 +245,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         if (str != null && str.length() > 0 && !ExtensionLoader.getExtensionLoader(Transporter.class).hasExtension(str))
             throw new RpcException("Unsupported server type: " + str + ", url: " + url);
 
-        url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() ? COMPATIBLE_CODEC_NAME : DubboCodec.NAME);
+        url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() ? COMPATIBLE_CODEC_NAME : XiaokuoCodec.NAME);
         ExchangeServer server;
 
         server = Exchangers.bind(url, requestHandler);
@@ -260,14 +260,14 @@ public class XiaokuoProtocol extends AbstractProtocol {
         return server;
     }
 
-    public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException {
+    public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException, RemotingException {
         // create rpc invoker.
         XiaokuoInvoker<T> invoker = new XiaokuoInvoker<T>(serviceType, url, getClients(url), invokers);
         invokers.add(invoker);
         return invoker;
     }
 
-    private ExchangeClient[] getClients(URL url) {
+    private ExchangeClient[] getClients(URL url) throws RemotingException {
         //是否共享连接
         boolean service_share_connect = false;
         int connections = url.getParameter(Constants.CONNECTIONS_KEY, 0);
@@ -291,7 +291,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
     /**
      * 获取共享连接
      */
-    private ExchangeClient getSharedClient(URL url) {
+    private ExchangeClient getSharedClient(URL url) throws RemotingException {
         String key = url.getAddress();
         ReferenceCountExchangeClient client = referenceClientMap.get(key);
         if (client != null) {
@@ -314,14 +314,14 @@ public class XiaokuoProtocol extends AbstractProtocol {
     /**
      * 创建新连接.
      */
-    private ExchangeClient initClient(URL url) {
+    private ExchangeClient initClient(URL url) throws RemotingException {
 
         // client type setting.
         String str = url.getParameter(Constants.CLIENT_KEY, url.getParameter(Constants.SERVER_KEY, Constants.DEFAULT_REMOTING_CLIENT));
 
         String version = url.getParameter(Constants.DUBBO_VERSION_KEY);
         boolean compatible = (version != null && version.startsWith("1.0."));
-        url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() && compatible ? COMPATIBLE_CODEC_NAME : DubboCodec.NAME);
+        url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() && compatible ? COMPATIBLE_CODEC_NAME : XiaokuoCodec.NAME);
         //默认开启heartbeat
         url = url.addParameterIfAbsent(Constants.HEARTBEAT_KEY, String.valueOf(Constants.DEFAULT_HEARTBEAT));
 

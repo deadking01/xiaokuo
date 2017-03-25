@@ -18,6 +18,7 @@ package com.git.wuqf.rpc.protocol.xiaokuo;
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.Codec2;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.exchange.Request;
 import com.git.wuqf.remoting.exchange.Response;
 import com.git.wuqf.remoting.exchange.codec.ExchangeCodec;
@@ -49,13 +50,13 @@ import static com.git.wuqf.rpc.protocol.xiaokuo.CallbackServiceCodec.encodeInvoc
  * @author qianlei
  * @author chao.liuc
  */
-public class DubboCodec extends ExchangeCodec implements Codec2 {
+public class XiaokuoCodec extends ExchangeCodec implements Codec2 {
 
-    private static final Logger log = LoggerFactory.getLogger(DubboCodec.class);
+    private static final Logger log = LoggerFactory.getLogger(XiaokuoCodec.class);
 
     public static final String NAME = "dubbo";
 
-    public static final String DUBBO_VERSION = Version.getVersion(DubboCodec.class, Version.getVersion());
+    public static final String DUBBO_VERSION = Version.getVersion(XiaokuoCodec.class, Version.getVersion());
 
     public static final byte RESPONSE_WITH_EXCEPTION = 0;
 
@@ -170,7 +171,7 @@ public class DubboCodec extends ExchangeCodec implements Codec2 {
     }
 
     @Override
-    protected void encodeRequestData(Channel channel, ObjectOutput out, Object data) throws IOException {
+    protected void encodeRequestData(Channel channel, ObjectOutput out, Object data) throws IOException, RemotingException {
         RpcInvocation inv = (RpcInvocation) data;
 
         out.writeUTF(inv.getAttachment(Constants.DUBBO_VERSION_KEY, DUBBO_VERSION));

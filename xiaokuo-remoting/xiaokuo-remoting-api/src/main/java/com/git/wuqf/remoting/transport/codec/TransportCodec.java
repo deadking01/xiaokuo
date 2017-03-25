@@ -17,6 +17,7 @@ package com.git.wuqf.remoting.transport.codec;
 
 
 import com.git.wuqf.remoting.Channel;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.buffer.ChannelBuffer;
 import com.git.wuqf.remoting.buffer.ChannelBufferInputStream;
 import com.git.wuqf.remoting.buffer.ChannelBufferOutputStream;
@@ -36,7 +37,7 @@ import java.io.OutputStream;
  */
 public class TransportCodec extends AbstractCodec {
 
-    public void encode(Channel channel, ChannelBuffer buffer, Object message) throws IOException {
+    public void encode(Channel channel, ChannelBuffer buffer, Object message) throws IOException, RemotingException {
         OutputStream output = new ChannelBufferOutputStream(buffer);
         ObjectOutput objectOutput = getSerialization(channel).serialize(channel.getUrl(), output);
         encodeData(channel, objectOutput, message);
@@ -48,7 +49,7 @@ public class TransportCodec extends AbstractCodec {
         return decodeData(channel, getSerialization(channel).deserialize(channel.getUrl(), input));
     }
 
-    protected void encodeData(Channel channel, ObjectOutput output, Object message) throws IOException {
+    protected void encodeData(Channel channel, ObjectOutput output, Object message) throws IOException, RemotingException {
         encodeData(output, message);
     }
 

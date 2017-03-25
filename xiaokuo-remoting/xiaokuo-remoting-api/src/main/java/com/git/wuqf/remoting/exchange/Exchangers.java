@@ -3,6 +3,7 @@ package com.git.wuqf.remoting.exchange;
 import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.ExchangeClient;
 import com.git.wuqf.remoting.ExchangeServer;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.support.ExchangeHandlerDispatcher;
 import com.git.wuqf.remoting.support.Replier;
 import com.git.wuqf.remoting.transport.ChannelHandlerAdapter;
@@ -14,27 +15,27 @@ import com.git.wuqf.xiaokuo.common.URL;
  * Created by wuqf on 17-3-18.
  */
 public class Exchangers {
-    public static ExchangeServer bind(String url, Replier<?> replier)  {
+    public static ExchangeServer bind(String url, Replier<?> replier) throws RemotingException {
         return bind(URL.valueOf(url), replier);
     }
 
-    public static ExchangeServer bind(URL url,  Replier<?> replier)  {
+    public static ExchangeServer bind(URL url,  Replier<?> replier) throws RemotingException {
         return bind(url, new ChannelHandlerAdapter(), replier);
     }
 
-    public static ExchangeServer bind(String url, ChannelHandler handler, Replier<?> replier)  {
+    public static ExchangeServer bind(String url, ChannelHandler handler, Replier<?> replier) throws RemotingException {
         return bind(URL.valueOf(url), handler, replier);
     }
 
-    public static ExchangeServer bind(URL url, ChannelHandler handler, Replier<?> replier)  {
+    public static ExchangeServer bind(URL url, ChannelHandler handler, Replier<?> replier) throws RemotingException {
         return bind(url, new ExchangeHandlerDispatcher(replier, handler));
     }
 
-    public static ExchangeServer bind(String url, ExchangeHandler handler)  {
+    public static ExchangeServer bind(String url, ExchangeHandler handler) throws RemotingException {
         return bind(URL.valueOf(url), handler);
     }
 
-    public static ExchangeServer bind(URL url, ExchangeHandler handler)  {
+    public static ExchangeServer bind(URL url, ExchangeHandler handler) throws RemotingException {
         if (url == null) {
             throw new IllegalArgumentException("url == null");
         }
@@ -45,35 +46,35 @@ public class Exchangers {
         return getExchanger(url).bind(url, handler);
     }
 
-    public static ExchangeClient connect(String url)  {
+    public static ExchangeClient connect(String url) throws RemotingException {
         return connect(URL.valueOf(url));
     }
 
-    public static ExchangeClient connect(URL url)  {
+    public static ExchangeClient connect(URL url) throws RemotingException {
         return connect(url, new ChannelHandlerAdapter(), null);
     }
 
-    public static ExchangeClient connect(String url, Replier<?> replier)  {
+    public static ExchangeClient connect(String url, Replier<?> replier) throws RemotingException {
         return connect(URL.valueOf(url), new ChannelHandlerAdapter(), replier);
     }
 
-    public static ExchangeClient connect(URL url, Replier<?> replier)  {
+    public static ExchangeClient connect(URL url, Replier<?> replier) throws RemotingException {
         return connect(url, new ChannelHandlerAdapter(), replier);
     }
 
-    public static ExchangeClient connect(String url, ChannelHandler handler, Replier<?> replier)  {
+    public static ExchangeClient connect(String url, ChannelHandler handler, Replier<?> replier) throws RemotingException {
         return connect(URL.valueOf(url), handler, replier);
     }
 
-    public static ExchangeClient connect(URL url, ChannelHandler handler, Replier<?> replier)  {
+    public static ExchangeClient connect(URL url, ChannelHandler handler, Replier<?> replier) throws RemotingException {
         return connect(url, new ExchangeHandlerDispatcher(replier, handler));
     }
 
-    public static ExchangeClient connect(String url, ExchangeHandler handler)  {
+    public static ExchangeClient connect(String url, ExchangeHandler handler) throws RemotingException {
         return connect(URL.valueOf(url), handler);
     }
 
-    public static ExchangeClient connect(URL url, ExchangeHandler handler)  {
+    public static ExchangeClient connect(URL url, ExchangeHandler handler) throws RemotingException {
         if (url == null) {
             throw new IllegalArgumentException("url == null");
         }

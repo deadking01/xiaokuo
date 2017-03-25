@@ -71,9 +71,9 @@ public class DecodeableRpcResult extends RpcResult implements Codec, Decodeable 
 
         byte flag = in.readByte();
         switch (flag) {
-            case DubboCodec.RESPONSE_NULL_VALUE:
+            case XiaokuoCodec.RESPONSE_NULL_VALUE:
                 break;
-            case DubboCodec.RESPONSE_VALUE:
+            case XiaokuoCodec.RESPONSE_VALUE:
                 try {
                     Type[] returnType = RpcUtils.getReturnTypes(invocation);
                     setValue(returnType == null || returnType.length == 0 ? in.readObject() :
@@ -83,7 +83,7 @@ public class DecodeableRpcResult extends RpcResult implements Codec, Decodeable 
                     throw new IOException(StringUtils.toString("Read response data failed.", e));
                 }
                 break;
-            case DubboCodec.RESPONSE_WITH_EXCEPTION:
+            case XiaokuoCodec.RESPONSE_WITH_EXCEPTION:
                 try {
                     Object obj = in.readObject();
                     if (obj instanceof Throwable == false)
