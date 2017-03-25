@@ -6,6 +6,7 @@ import com.git.wuqf.remoting.ExchangeServer;
 import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.support.ExchangeHandlerDispatcher;
 import com.git.wuqf.remoting.support.Replier;
+import com.git.wuqf.remoting.support.header.HeaderExchanger;
 import com.git.wuqf.remoting.transport.ChannelHandlerAdapter;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
@@ -87,7 +88,7 @@ public class Exchangers {
 
     public static Exchanger getExchanger(URL url) {
         String type = url.getParameter(Constants.EXCHANGER_KEY, Constants.DEFAULT_EXCHANGER);
-        return null;
+        return new HeaderExchanger();
     }
 
 

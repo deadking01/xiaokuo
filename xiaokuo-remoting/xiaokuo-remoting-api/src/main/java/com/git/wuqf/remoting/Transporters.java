@@ -19,6 +19,7 @@ package com.git.wuqf.remoting;
 import com.git.wuqf.remoting.transport.ChannelHandlerAdapter;
 import com.git.wuqf.remoting.transport.ChannelHandlerDispatcher;
 import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;
 
 /**
  * Transporter facade. (API, Static, ThreadSafe)
@@ -67,14 +68,7 @@ public class Transporters {
     }
 
     public static Transporter getTransporter() {
-        try {
-            return Transporter.class.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return ExtensionLoader.getExtensionLoader(Transporter.class).getAdaptiveExtension();
     }
 
     private Transporters(){
