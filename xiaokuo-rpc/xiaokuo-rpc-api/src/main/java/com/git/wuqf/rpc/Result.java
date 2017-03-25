@@ -25,7 +25,7 @@ public interface Result {
      *
      * @return result.
      */
-    Object recreate();
+    Object recreate() throws Throwable;
 
     boolean hasException();
 
