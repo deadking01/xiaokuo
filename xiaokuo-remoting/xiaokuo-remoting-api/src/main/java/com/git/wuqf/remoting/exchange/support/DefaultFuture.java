@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.git.wuqf.remoting.support;
+package com.git.wuqf.remoting.exchange.support;
 
 
 import com.git.wuqf.remoting.Channel;

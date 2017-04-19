@@ -1,7 +1,9 @@
 package com.git.wuqf.rpc;
 
 import com.git.wuqf.remoting.RpcException;
+import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.common.extension.Adaptive;
 import com.git.wuqf.xiaokuo.common.extension.SPI;
 
 /**
@@ -16,6 +18,7 @@ public interface ProxyFactory {
      * @param invoker
      * @return proxy
      */
+    @Adaptive({Constants.PROXY_KEY})
     <T> T getProxy(Invoker<T> invoker) throws RpcException;
 
     /**
@@ -27,5 +30,6 @@ public interface ProxyFactory {
      * @param url
      * @return invoker
      */
+    @Adaptive({Constants.PROXY_KEY})
     <T> Invoker<T> getInvoker(T proxy, Class<T> type, URL url) throws RpcException;
 }

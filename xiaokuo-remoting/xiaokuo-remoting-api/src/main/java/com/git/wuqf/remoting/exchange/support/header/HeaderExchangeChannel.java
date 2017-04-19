@@ -1,4 +1,4 @@
-package com.git.wuqf.remoting.support.header;
+package com.git.wuqf.remoting.exchange.support.header;
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;

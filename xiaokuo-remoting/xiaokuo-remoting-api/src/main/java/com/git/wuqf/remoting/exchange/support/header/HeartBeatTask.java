@@ -14,7 +14,7 @@
  *   limitations under the License.
  */
 
-package com.git.wuqf.remoting.support.header;
+package com.git.wuqf.remoting.exchange.support.header;
 
 
 import com.git.wuqf.remoting.Channel;

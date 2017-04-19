@@ -17,7 +17,7 @@ package com.git.wuqf.rpc.protocol.xiaokuo;
 
 
 import com.git.wuqf.remoting.*;
-import com.git.wuqf.remoting.support.header.HeaderExchangeClient;
+import com.git.wuqf.remoting.exchange.support.header.HeaderExchangeClient;
 import com.git.wuqf.remoting.transport.ClientDelegate;
 import com.git.wuqf.rpc.Invocation;
 import com.git.wuqf.rpc.Result;

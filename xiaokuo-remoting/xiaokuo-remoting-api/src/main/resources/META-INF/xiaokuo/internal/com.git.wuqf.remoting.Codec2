@@ -1,0 +1,3 @@
+transport=com.git.wuqf.remoting.transport.codec.TransportCodec
+telnet=com.git.wuqf.remoting.telnet.codec.TelnetCodec
+exchange=com.git.wuqf.remoting.exchange.codec.ExchangeCodec

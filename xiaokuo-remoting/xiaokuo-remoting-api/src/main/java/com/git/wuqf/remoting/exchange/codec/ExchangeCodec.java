@@ -24,7 +24,7 @@ import com.git.wuqf.remoting.buffer.ChannelBufferInputStream;
 import com.git.wuqf.remoting.buffer.ChannelBufferOutputStream;
 import com.git.wuqf.remoting.exchange.Request;
 import com.git.wuqf.remoting.exchange.Response;
-import com.git.wuqf.remoting.support.DefaultFuture;
+import com.git.wuqf.remoting.exchange.support.DefaultFuture;
 import com.git.wuqf.remoting.telnet.codec.TelnetCodec;
 import com.git.wuqf.remoting.transport.CodecSupport;
 import com.git.wuqf.xiaokuo.common.io.Bytes;
