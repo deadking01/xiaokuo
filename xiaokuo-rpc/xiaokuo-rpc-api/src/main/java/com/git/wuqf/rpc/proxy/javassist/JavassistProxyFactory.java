@@ -24,7 +24,6 @@ public class JavassistProxyFactory extends AbstractProxyFactory {
 
             @Override
             public void destory() {
-
             }
 
             @Override

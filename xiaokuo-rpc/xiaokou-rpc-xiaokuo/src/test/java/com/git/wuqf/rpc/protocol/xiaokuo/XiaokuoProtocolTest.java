@@ -6,6 +6,7 @@ import com.git.wuqf.rpc.protocol.xiaokuo.support.DemoService;
 import com.git.wuqf.rpc.protocol.xiaokuo.support.DemoServiceImpl;
 import com.git.wuqf.rpc.proxy.javassist.JavassistProxyFactory;
 import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
@@ -14,8 +15,8 @@ import static junit.framework.TestCase.assertEquals;
  * Created by wuqf on 17-3-25.
  */
 public class XiaokuoProtocolTest {
-    private Protocol protocol = new XiaokuoProtocol();
-    private ProxyFactory proxy = new JavassistProxyFactory();
+    private Protocol protocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
+    private ProxyFactory proxy = ExtensionLoader.getExtensionLoader(ProxyFactory.class).getAdaptiveExtension();
 
     @Test
     public void testDemoProtocol() throws Exception

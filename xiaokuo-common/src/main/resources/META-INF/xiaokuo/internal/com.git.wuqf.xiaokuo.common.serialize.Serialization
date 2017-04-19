@@ -1,0 +1,2 @@
+java=com.git.wuqf.xiaokuo.common.serialize.support.java.JavaSerialization
+nativejava=com.git.wuqf.xiaokuo.common.serialize.support.nativejava.NativeJavaSerialization

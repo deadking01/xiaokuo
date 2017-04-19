@@ -1,0 +1,3 @@
+adaptive=com.git.wuqf.xiaokuo.common.compiler.support.AdaptiveCompiler
+jdk=com.git.wuqf.xiaokuo.common.compiler.support.JdkCompiler
+javassist=com.git.wuqf.xiaokuo.common.compiler.support.JavassistCompiler

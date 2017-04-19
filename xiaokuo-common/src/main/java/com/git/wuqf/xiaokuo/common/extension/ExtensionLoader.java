@@ -38,7 +38,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 
 /**
- * Dubbo使用的扩展点获取。<p>
+ * Xiaokuo使用的扩展点获取。<p>
  * <ul>
  * <li>自动注入关联扩展点。</li>
  * <li>自动Wrap上扩展点的Wrap类。</li>
@@ -55,9 +55,9 @@ public class ExtensionLoader<T> {
 
     private static final String SERVICES_DIRECTORY = "META-INF/services/";
 
-    private static final String DUBBO_DIRECTORY = "META-INF/dubbo/";
+    private static final String XIAOKUO_DIRECTORY = "META-INF/xiaokuo/";
 
-    private static final String DUBBO_INTERNAL_DIRECTORY = DUBBO_DIRECTORY + "internal/";
+    private static final String XIAOKUO_INTERNAL_DIRECTORY = XIAOKUO_DIRECTORY + "internal/";
 
     private static final Pattern NAME_SEPARATOR = Pattern.compile("\\s*[,]+\\s*");
 
@@ -544,7 +544,7 @@ public class ExtensionLoader<T> {
 
     private Map<String, Class<?>> getExtensionClasses() {
         Map<String, Class<?>> classes = cachedClasses.get();
-        if (classes == null) {
+        if (classes == null||classes.size()==0) {
             synchronized (cachedClasses) {
                 classes = cachedClasses.get();
                 if (classes == null) {
@@ -572,8 +572,8 @@ public class ExtensionLoader<T> {
         }
 
         Map<String, Class<?>> extensionClasses = new HashMap<String, Class<?>>();
-        loadFile(extensionClasses, DUBBO_INTERNAL_DIRECTORY);
-        loadFile(extensionClasses, DUBBO_DIRECTORY);
+        loadFile(extensionClasses, XIAOKUO_INTERNAL_DIRECTORY);
+        loadFile(extensionClasses, XIAOKUO_DIRECTORY);
         loadFile(extensionClasses, SERVICES_DIRECTORY);
         return extensionClasses;
     }
@@ -828,7 +828,7 @@ public class ExtensionLoader<T> {
 
                 boolean hasInvocation = false;
                 for (int i = 0; i < pts.length; ++i) {
-                    if (pts[i].getName().equals("com.alibaba.dubbo.rpc.Invocation")) {
+                    if (pts[i].getName().equals("com.git.wuqf.rpc.Invocation")) {
                         // Null Point check
                         String s = String.format("\nif (arg%d == null) throw new IllegalArgumentException(\"invocation == null\");", i);
                         code.append(s);
