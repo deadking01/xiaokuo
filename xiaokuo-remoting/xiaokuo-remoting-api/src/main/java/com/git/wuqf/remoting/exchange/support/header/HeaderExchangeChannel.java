@@ -2,6 +2,7 @@ package com.git.wuqf.remoting.exchange.support.header;
 
 import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
+import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.exchange.ExchangeChannel;
 import com.git.wuqf.remoting.exchange.ExchangeHandler;
 import com.git.wuqf.remoting.exchange.ResponseFuture;
@@ -50,7 +51,7 @@ public class HeaderExchangeChannel implements ExchangeChannel {
 
     @Override
     public InetSocketAddress getRemoteAddress() {
-        return null;
+        return channel.getRemoteAddress();
     }
 
     @Override
@@ -80,7 +81,7 @@ public class HeaderExchangeChannel implements ExchangeChannel {
 
     @Override
     public URL getUrl() {
-        return null;
+        return channel.getUrl();
     }
 
     @Override
@@ -90,7 +91,7 @@ public class HeaderExchangeChannel implements ExchangeChannel {
 
     @Override
     public InetSocketAddress getLocalAddress() {
-        return null;
+        return channel.getUrl().toInetSocketAddress();
     }
 
     @Override
@@ -99,8 +100,8 @@ public class HeaderExchangeChannel implements ExchangeChannel {
     }
 
     @Override
-    public void send(Object message) {
-
+    public void send(Object message) throws RemotingException {
+        channel.send(message);
     }
 
     @Override

@@ -44,8 +44,7 @@ public class NettyClient extends AbstractClient {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
-
-                        p.addLast(new LoggingHandler(LogLevel.DEBUG));
+                        p.addLast(new LoggingHandler(LogLevel.TRACE));
                         p.addLast(
                                 new ObjectEncoder(),
                                 new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);

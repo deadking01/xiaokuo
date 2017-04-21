@@ -27,6 +27,7 @@ public class NettyHandler extends ChannelInboundHandlerAdapter {
         this.handler=handler;
     }
 
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws RemotingException {
         NettyChannel channel=NettyChannel.getOrAddChannel(ctx.channel(),url,handler);

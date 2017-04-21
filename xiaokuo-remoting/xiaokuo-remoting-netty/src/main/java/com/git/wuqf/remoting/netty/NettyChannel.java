@@ -17,8 +17,6 @@ public class NettyChannel extends AbstractPeer implements Channel {
 
     private final ChannelHandler handler;
 
-    private volatile URL url;
-
     private volatile boolean closed;
 
     private static final ConcurrentMap<io.netty.channel.Channel, NettyChannel> channelMap = new ConcurrentHashMap<>();
@@ -82,11 +80,6 @@ public class NettyChannel extends AbstractPeer implements Channel {
     @Override
     public void removeAttribute(String key) {
         attributes.remove(key);
-    }
-
-    @Override
-    public com.git.wuqf.xiaokuo.common.URL getUrl() {
-        return url;
     }
 
     @Override
