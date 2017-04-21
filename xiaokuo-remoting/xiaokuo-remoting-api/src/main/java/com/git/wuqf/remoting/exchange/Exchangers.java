@@ -10,6 +10,7 @@ import com.git.wuqf.remoting.exchange.support.header.HeaderExchanger;
 import com.git.wuqf.remoting.transport.ChannelHandlerAdapter;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;
 
 
 /**
@@ -88,10 +89,8 @@ public class Exchangers {
 
     public static Exchanger getExchanger(URL url) {
         String type = url.getParameter(Constants.EXCHANGER_KEY, Constants.DEFAULT_EXCHANGER);
-        return new HeaderExchanger();
+        return ExtensionLoader.getExtensionLoader(Exchanger.class).getExtension(type);
     }
-
-
 
     private Exchangers(){
     }

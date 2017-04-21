@@ -54,7 +54,7 @@ public class XiaokuoCodec extends ExchangeCodec implements Codec2 {
 
     private static final Logger log = LoggerFactory.getLogger(XiaokuoCodec.class);
 
-    public static final String NAME = "dubbo";
+    public static final String NAME = "xiaokuo";
 
     public static final String DUBBO_VERSION = Version.getVersion(XiaokuoCodec.class, Version.getVersion());
 

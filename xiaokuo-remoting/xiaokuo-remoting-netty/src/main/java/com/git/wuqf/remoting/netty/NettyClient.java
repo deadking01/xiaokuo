@@ -24,7 +24,6 @@ public class NettyClient extends AbstractClient {
 
     private Bootstrap bootstrap;
     private Channel channel;
-    private URL url;
     private ChannelHandler channelHandler;
     private EventLoopGroup group;
 
@@ -36,7 +35,7 @@ public class NettyClient extends AbstractClient {
         group = new NioEventLoopGroup();
 
         bootstrap = new Bootstrap();
-        NettyHandler nettyHandler = new NettyHandler(url, this);
+        NettyHandler nettyHandler = new NettyHandler(getUrl(), this);
         bootstrap.group(group)
                 .channel(NioSocketChannel.class)
                 .option(ChannelOption.SO_KEEPALIVE, true)
@@ -46,7 +45,7 @@ public class NettyClient extends AbstractClient {
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
 
-                        p.addLast(new LoggingHandler(LogLevel.INFO));
+                        p.addLast(new LoggingHandler(LogLevel.DEBUG));
                         p.addLast(
                                 new ObjectEncoder(),
                                 new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);

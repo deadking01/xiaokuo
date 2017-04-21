@@ -13,6 +13,5 @@ public abstract class AbstractEndpoint extends AbstractPeer {
         super(url, channelHandler);
     }
     public void reset(URL url) {
-
     }
 }

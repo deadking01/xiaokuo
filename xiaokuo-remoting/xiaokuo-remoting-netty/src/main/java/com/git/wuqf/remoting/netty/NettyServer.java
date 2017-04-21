@@ -55,7 +55,7 @@ public class NettyServer<T> extends AbstractServer implements Server {
                     @Override
                     public void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline p = ch.pipeline();
-                        p.addLast(new LoggingHandler(LogLevel.INFO));
+                        p.addLast(new LoggingHandler(LogLevel.DEBUG));
                         p.addLast(
                                 new ObjectEncoder(),
                                 new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);

@@ -31,7 +31,7 @@ import java.util.regex.Matcher;
 /**
  * Wrapper.
  * 
- * @author qian.lei
+ * @author wuqf
  */
 
 public abstract class Wrapper

@@ -221,7 +221,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
 
     private void openServer(URL url) throws RemotingException {
         // find server.
-        String key = url.getAddress();
+        String key =serviceKey(url);
         //client 也可以暴露一个只有server可以调用的服务。
         boolean isServer = url.getParameter(Constants.IS_SERVER_KEY, true);
         if (isServer) {

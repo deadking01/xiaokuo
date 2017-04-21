@@ -1,5 +1,10 @@
 package com.git.wuqf.remoting.netty;
 
+import com.git.wuqf.remoting.Client;
+import com.git.wuqf.remoting.RemotingException;
+import com.git.wuqf.remoting.Server;
+import com.git.wuqf.xiaokuo.common.URL;
+
 import java.net.MalformedURLException;
 
 /**
@@ -7,12 +12,12 @@ import java.net.MalformedURLException;
  */
 public class NettyTransportTest {
 
-    public static void main(String[] args) throws MalformedURLException {
-//        URL url=new URL("http://localhost:9999");
-//        NettyTransports nettyTransports=new NettyTransports();
-//
-//        Server server=nettyTransports.bind(url,new WordHandler());
-//        Client client=nettyTransports.Connect(url,new WordHandler());
-//        client.send(new Word("aaa"));
+    public static void main(String[] args) throws MalformedURLException, RemotingException {
+        URL url=new URL("xiaokuo","localhost",9999);
+        NettyTransporter nettyTransports=new NettyTransporter();
+
+        Server server=nettyTransports.bind(url,new WordHandler());
+        Client client=nettyTransports.connect(url,new WordHandler());
+        client.send(new Word("aaa"));
     }
 }

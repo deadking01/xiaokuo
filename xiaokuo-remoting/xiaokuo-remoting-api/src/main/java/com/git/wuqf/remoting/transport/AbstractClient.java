@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 /**
  * Created by wuqf on 17-2-25.
  */
-public abstract class AbstractClient extends AbstractEndpoint implements Client, ChannelHandler {
+public abstract class AbstractClient extends AbstractEndpoint implements Client {
 
     public AbstractClient(URL url, ChannelHandler channelHandler) {
         super(url,channelHandler);
