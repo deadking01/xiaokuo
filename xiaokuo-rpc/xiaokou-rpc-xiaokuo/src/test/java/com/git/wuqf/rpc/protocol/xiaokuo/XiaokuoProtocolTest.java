@@ -29,8 +29,8 @@ public class XiaokuoProtocolTest {
         Invoker<DemoService> ci=protocol.refer(DemoService.class, URL.valueOf("xiaokuo://127.0.0.1:9020/" + DemoService.class.getName() + "?codec=exchange"));
         service = proxy.getProxy(ci);
 
-        //service.sayHello("xxxxxxxxxxxxxxxxx");
-        int size=service.getSize(new String[]{"a", "b", "c"});
-        assertEquals(size, 3);
+        service.sayHello("xxxxxxxxxxxxxxxxx");
+//        int size=service.getSize(new String[]{"a", "b", "c"});
+//        assertEquals(size, 3);
     }
 }

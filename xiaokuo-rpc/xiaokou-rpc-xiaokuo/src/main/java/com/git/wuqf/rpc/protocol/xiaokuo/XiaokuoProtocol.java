@@ -27,18 +27,18 @@ public class XiaokuoProtocol extends AbstractProtocol {
 
     public static String NAME = "xiaokuo";
     public static int DEFAULT_PORT = 20880;
-    public static final String COMPATIBLE_CODEC_NAME = "dubbo1compatible";
+    public static final String COMPATIBLE_CODEC_NAME = "xiaokuocompatible";
     public final ReentrantLock lock = new ReentrantLock();
 
     private final Map<String, ExchangeServer> serverMap = new ConcurrentHashMap<String, ExchangeServer>(); // <host:port,Exchanger>
 
-    private final Map<String, ReferenceCountExchangeClient> referenceClientMap = new ConcurrentHashMap<String, ReferenceCountExchangeClient>(); // <host:port,Exchanger>
+    private final Map<String, ReferenceCountExchangeClient> referenceClientMap = new ConcurrentHashMap<>(); // <host:port,Exchanger>
 
-    private final ConcurrentMap<String, LazyConnectExchangeClient> ghostClientMap = new ConcurrentHashMap<String, LazyConnectExchangeClient>();
+    private final ConcurrentMap<String, LazyConnectExchangeClient> ghostClientMap = new ConcurrentHashMap<>();
 
     //consumer side export a stub service for dispatching event
     //servicekey-stubmethods
-    private final ConcurrentMap<String, String> stubServiceMethodsMap = new ConcurrentHashMap<String, String>();
+    private final ConcurrentMap<String, String> stubServiceMethodsMap = new ConcurrentHashMap<>();
 
     private static final String IS_CALLBACK_SERVICE_INVOKE = "_isCallBackServiceInvoke";
     private ExchangeHandler requestHandler = new ExchangeHandlerAdapter() {
