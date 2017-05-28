@@ -36,16 +36,6 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
         return false;
     }
 
-    @Override
-    public Collection<Channel> getChannels() {
-
-        return null;
-    }
-
-    @Override
-    public Channel getChannel(InetSocketAddress remoteAddress) {
-        return null;
-    }
 
     @Override
     public InetSocketAddress getLocalAddress() {

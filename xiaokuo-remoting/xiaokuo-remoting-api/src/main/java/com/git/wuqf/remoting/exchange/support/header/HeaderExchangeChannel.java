@@ -5,7 +5,9 @@ import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.exchange.ExchangeChannel;
 import com.git.wuqf.remoting.exchange.ExchangeHandler;
+import com.git.wuqf.remoting.exchange.Request;
 import com.git.wuqf.remoting.exchange.ResponseFuture;
+import com.git.wuqf.remoting.exchange.support.DefaultFuture;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
 
@@ -30,13 +32,26 @@ public class HeaderExchangeChannel implements ExchangeChannel {
     }
 
     @Override
-    public ResponseFuture request(Object request) {
+    public ResponseFuture request(Object request) throws RemotingException{
         return request(request, channel.getUrl().getPositiveParameter(Constants.TIMEOUT_KEY, Constants.DEFAULT_TIMEOUT));
     }
 
     @Override
-    public ResponseFuture request(Object request, int timeout) {
-        return null;
+    public ResponseFuture request(Object request, int timeout) throws RemotingException{
+
+        // create request.
+        Request req = new Request();
+        req.setVersion("2.0.0");
+        req.setTwoWay(true);
+        req.setData(request);
+        DefaultFuture future = new DefaultFuture(channel, req, timeout);
+        try{
+            channel.send(req);
+        }catch (RemotingException e) {
+            future.cancel();
+            throw e;
+        }
+        return future;
     }
 
     @Override

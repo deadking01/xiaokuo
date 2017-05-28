@@ -15,15 +15,7 @@
  */
 package com.git.wuqf.remoting;
 
-/**
- * RPC Exception. (API, Prototype, ThreadSafe)
- * 
- * @serial Don't change the class name and properties.
- * @since 1.0
- * @author shawn.qianx
- * @author william.liangf
- * @export
- */
+
 public final class RpcException extends RuntimeException {
 
 	private static final long serialVersionUID = 7815426752583648734L;

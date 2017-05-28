@@ -17,12 +17,7 @@ package com.git.wuqf.remoting;
 
 import java.net.InetSocketAddress;
 
-/**
- * RemotingException. (API, Prototype, ThreadSafe)
- *
- * @author qian.lei
- * @export
- */
+
 public class RemotingException extends Exception {
 
     private static final long serialVersionUID = -3160452149606778709L;

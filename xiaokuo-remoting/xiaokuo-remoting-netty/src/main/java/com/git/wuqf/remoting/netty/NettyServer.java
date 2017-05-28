@@ -4,6 +4,8 @@ import com.git.wuqf.remoting.Channel;
 import com.git.wuqf.remoting.ChannelHandler;
 import com.git.wuqf.remoting.Server;
 import com.git.wuqf.remoting.transport.AbstractServer;
+import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.common.utils.NetUtils;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -15,7 +17,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-import com.git.wuqf.xiaokuo.common.URL;
+import java.net.InetSocketAddress;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -77,4 +79,10 @@ public class NettyServer<T> extends AbstractServer implements Server {
         }
         return chs;
     }
+
+    @Override
+    public Channel getChannel(InetSocketAddress remoteAddress) {
+        return channels.get(NetUtils.toAddressString(remoteAddress));
+    }
+
 }

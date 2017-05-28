@@ -1,6 +1,6 @@
 package com.git.wuqf.rpc;
 
-import com.git.wuqf.remoting.RemotingException;
+import com.git.wuqf.remoting.RpcException;
 import com.git.wuqf.xiaokuo.common.Node;
 
 /**
@@ -10,5 +10,5 @@ public interface Invoker<T> extends Node {
 
     Class<T> getInterface();
 
-    Result invoke(Invocation invocation) throws RemotingException;
+    Result invoke(Invocation invocation) throws RpcException;
 }

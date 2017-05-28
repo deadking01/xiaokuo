@@ -175,7 +175,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         }
         String serviceKey = serviceKey(port, path, inv.getAttachments().get(Constants.VERSION_KEY), inv.getAttachments().get(Constants.GROUP_KEY));
 
-        XiaokuoExporter<?> exporter = (XiaokuoExporter<?>) exporterMap.get(serviceKey);
+        XiaokuoExporter<?> exporter = (XiaokuoExporter<?>) exporterMap.get("com.git.wuqf.rpc.protocol.xiaokuo.support.DemoService:9020");
 
         if (exporter == null)
             throw new RemotingException(channel, "Not found exported service: " + serviceKey + " in " + exporterMap.keySet() + ", may be version or group mismatch " + ", channel: consumer: " + channel.getRemoteAddress() + " --> provider: " + channel.getLocalAddress() + ", message:" + inv);
