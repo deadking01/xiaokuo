@@ -71,7 +71,8 @@ public abstract class AbstractProxyInvoker<T> implements Invoker<T> {
 
     public Result invoke(Invocation invocation) throws RpcException {
         try {
-            return new RpcResult(doInvoke(proxy, invocation.getMethodName(), invocation.getParameterTypes(), invocation.getArguments()));
+            Object o=doInvoke(proxy, invocation.getMethodName(), invocation.getParameterTypes(), invocation.getArguments());
+            return new RpcResult(o);
         } catch (InvocationTargetException e) {
             return new RpcResult(e.getTargetException());
         } catch (Throwable e) {

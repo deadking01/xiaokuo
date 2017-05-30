@@ -20,7 +20,7 @@ public class XiaokuoProtocolTest {
     URL u = URL.valueOf("xiaokuo://127.0.0.1:9020/" + DemoService.class.getName() + "?codec=exchange");
 
     @Test
-    public void testDemoProtocol() throws Exception {
+    public void testDemoProtocol_sayHello() throws Exception {
         DemoService service = new DemoServiceImpl();
         Invoker<DemoService> serviceInvoker = proxy.getInvoker(service, DemoService.class, u);
         protocol.export(serviceInvoker);
@@ -29,6 +29,18 @@ public class XiaokuoProtocolTest {
                 u);
         service = proxy.getProxy(clientInvoker);
 
+        service.sayHello("jbwy");
+    }
+
+    @Test
+    public void testDemoProtocol() throws Exception {
+        DemoService service = new DemoServiceImpl();
+        Invoker<DemoService> serviceInvoker = proxy.getInvoker(service, DemoService.class, u);
+        protocol.export(serviceInvoker);
+
+        Invoker<DemoService> clientInvoker = protocol.refer(DemoService.class,
+                u);
+        service = proxy.getProxy(clientInvoker);
 
         int size = service.getSize(new String[]{"a", "b", "c"});
         assertEquals(3, size);
