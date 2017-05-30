@@ -17,7 +17,7 @@ package com.git.wuqf.xiaokuo.rpc.protocol;
 
 
 import com.git.wuqf.xiaokuo.remoting.RpcException;
-import com.git.wuqf.rpc.*;
+import com.git.wuqf.xiaokuo.rpc.*;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;

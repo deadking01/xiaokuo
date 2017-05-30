@@ -18,7 +18,7 @@ package com.git.wuqf.xiaokuo.rpc.protocol.xiaokuo;
 
 import com.git.wuqf.xiaokuo.remoting.Channel;
 import com.git.wuqf.xiaokuo.remoting.RemotingException;
-import com.git.wuqf.rpc.*;
+import com.git.wuqf.xiaokuo.rpc.*;
 import com.git.wuqf.xiaokuo.common.ConcurrentHashSet;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;

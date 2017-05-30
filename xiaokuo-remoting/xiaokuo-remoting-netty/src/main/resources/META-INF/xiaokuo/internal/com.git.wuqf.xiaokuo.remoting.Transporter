@@ -1,1 +1,1 @@
-netty=com.git.wuqf.remoting.netty.NettyTransporter
+netty=com.git.wuqf.xiaokuo.remoting.netty.NettyTransporter

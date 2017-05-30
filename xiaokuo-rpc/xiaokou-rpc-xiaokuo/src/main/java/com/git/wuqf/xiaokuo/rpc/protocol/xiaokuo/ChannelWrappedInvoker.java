@@ -16,7 +16,8 @@
 package com.git.wuqf.xiaokuo.rpc.protocol.xiaokuo;
 
 
-import com.git.wuqf.remoting.*;
+import com.git.wuqf.xiaokuo.common.Constants;
+import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.remoting.*;
 import com.git.wuqf.xiaokuo.remoting.exchange.support.header.HeaderExchangeClient;
 import com.git.wuqf.xiaokuo.remoting.transport.ClientDelegate;
@@ -25,8 +26,6 @@ import com.git.wuqf.xiaokuo.rpc.Result;
 import com.git.wuqf.xiaokuo.rpc.RpcInvocation;
 import com.git.wuqf.xiaokuo.rpc.RpcResult;
 import com.git.wuqf.xiaokuo.rpc.protocol.AbstractInvoker;
-import com.git.wuqf.xiaokuo.common.Constants;
-import com.git.wuqf.xiaokuo.common.URL;
 
 import java.net.InetSocketAddress;
 

@@ -2,7 +2,7 @@ package com.git.wuqf.xiaokuo.rpc.protocol.xiaokuo;
 
 import com.git.wuqf.xiaokuo.remoting.ExchangeClient;
 import com.git.wuqf.xiaokuo.remoting.RemotingException;
-import com.git.wuqf.rpc.*;
+import com.git.wuqf.xiaokuo.rpc.*;
 import com.git.wuqf.xiaokuo.rpc.*;
 import com.git.wuqf.xiaokuo.rpc.protocol.AbstractInvoker;
 import com.git.wuqf.xiaokuo.common.Constants;
