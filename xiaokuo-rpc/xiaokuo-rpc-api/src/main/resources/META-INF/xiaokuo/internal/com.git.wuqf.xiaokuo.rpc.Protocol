@@ -1,0 +1,2 @@
+filter=com.git.wuqf.xiaokuo.rpc.protocol.ProtocolFilterWrapper
+listener=com.git.wuqf.xiaokuo.rpc.protocol.ProtocolListenerWrapper

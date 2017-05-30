@@ -1,6 +1,6 @@
 package com.git.wuqf.xiaokuo.registry.zookeeper;
 
-import com.git.wuqf.remoting.RpcException;
+import com.git.wuqf.xiaokuo.remoting.RpcException;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.common.utils.UrlUtils;

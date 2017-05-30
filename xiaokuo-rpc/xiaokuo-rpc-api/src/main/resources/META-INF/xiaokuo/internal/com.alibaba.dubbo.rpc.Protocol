@@ -1,2 +1,0 @@
-filter=com.wuqf.rpc.protocol.ProtocolFilterWrapper
-listener=com.wuqf.rpc.protocol.ProtocolListenerWrapper

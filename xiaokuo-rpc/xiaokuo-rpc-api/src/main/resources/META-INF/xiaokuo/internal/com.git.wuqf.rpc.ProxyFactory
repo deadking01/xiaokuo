@@ -1,3 +1,0 @@
-stub=com.wuqf.rpc.proxy.wrapper.StubProxyFactoryWrapper
-jdk=com.wuqf.rpc.proxy.jdk.JdkProxyFactory
-javassist=com.git.wuqf.rpc.proxy.javassist.JavassistProxyFactory
