@@ -24,24 +24,24 @@ import java.net.InetSocketAddress;
 
 /**
  * ClientDelegate
- * 
+ *
  * @author william.liangf
  */
 public class ClientDelegate implements Client {
-    
+
     private transient Client client;
 
     public ClientDelegate() {
     }
 
-    public ClientDelegate(Client client){
+    public ClientDelegate(Client client) {
         setClient(client);
     }
-    
+
     public Client getClient() {
         return client;
     }
-    
+
     public void setClient(Client client) {
         if (client == null) {
             throw new IllegalArgumentException("client == null");
@@ -52,7 +52,7 @@ public class ClientDelegate implements Client {
     public void reset(URL url) {
         client.reset(url);
     }
-    
+
 
     public URL getUrl() {
         return client.getUrl();
@@ -105,6 +105,7 @@ public class ClientDelegate implements Client {
     public void close() {
         client.close();
     }
+
     public void close(int timeout) {
         client.close(timeout);
     }

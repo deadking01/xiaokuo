@@ -21,13 +21,13 @@ package com.git.wuqf.xiaokuo.common.utils;
  * @author william.liangf
  */
 public class Holder<T> {
-    
+
     private volatile T value;
-    
+
     public void set(T value) {
         this.value = value;
     }
-    
+
     public T get() {
         return value;
     }

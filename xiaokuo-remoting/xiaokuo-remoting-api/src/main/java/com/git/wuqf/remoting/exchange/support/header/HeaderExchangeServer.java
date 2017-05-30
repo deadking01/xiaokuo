@@ -18,9 +18,9 @@ import java.util.concurrent.ScheduledFuture;
 /**
  * Created by wuqf on 17-3-18.
  */
-public class HeaderExchangeServer implements ExchangeServer{
+public class HeaderExchangeServer implements ExchangeServer {
 
-    private ScheduledExecutorService service= Executors.newScheduledThreadPool(1,new NamedThreadFactory("xiaokuo-remote-server-heartbeat",true));
+    private ScheduledExecutorService service = Executors.newScheduledThreadPool(1, new NamedThreadFactory("xiaokuo-remote-server-heartbeat", true));
 
     private ScheduledFuture<?> heartbeatTimer;
 
@@ -31,18 +31,19 @@ public class HeaderExchangeServer implements ExchangeServer{
 
     private final Server server;
 
-    private volatile boolean closed=false;
+    private volatile boolean closed = false;
 
-    public HeaderExchangeServer(Server server){
-        this.server=server;
+    public HeaderExchangeServer(Server server) {
+        this.server = server;
 
     }
+
     @Override
     public Collection<ExchangeChannel> getExchangeChannels() {
-        Collection<ExchangeChannel> exchangeChannels=new ArrayList<>();
-        Collection<Channel> channels=server.getChannels();
-        if(channels!=null&&channels.size()!=0){
-            for(Channel channel:channels){
+        Collection<ExchangeChannel> exchangeChannels = new ArrayList<>();
+        Collection<Channel> channels = server.getChannels();
+        if (channels != null && channels.size() != 0) {
+            for (Channel channel : channels) {
                 exchangeChannels.add(HeaderExchangeChannel.getOrAddChannel(channel));
             }
         }

@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class HeaderExchangeClient implements ExchangeClient {
 
-    private static final Logger logger = LoggerFactory.getLogger( HeaderExchangeClient.class );
+    private static final Logger logger = LoggerFactory.getLogger(HeaderExchangeClient.class);
 
     private static final ScheduledThreadPoolExecutor scheduled = new ScheduledThreadPoolExecutor(2, new NamedThreadFactory("dubbo-remoting-client-heartbeat", true));
 
@@ -38,17 +38,17 @@ public class HeaderExchangeClient implements ExchangeClient {
 
     private final ExchangeChannel channel;
 
-    public HeaderExchangeClient(Client client){
+    public HeaderExchangeClient(Client client) {
         if (client == null) {
             throw new IllegalArgumentException("client == null");
         }
         this.client = client;
         this.channel = new HeaderExchangeChannel(client);
         String dubbo = client.getUrl().getParameter(Constants.DUBBO_VERSION_KEY);
-        this.heartbeat = client.getUrl().getParameter( Constants.HEARTBEAT_KEY, dubbo != null && dubbo.startsWith("1.0.") ? Constants.DEFAULT_HEARTBEAT : 0 );
-        this.heartbeatTimeout = client.getUrl().getParameter( Constants.HEARTBEAT_TIMEOUT_KEY, heartbeat * 3 );
-        if ( heartbeatTimeout < heartbeat * 2 ) {
-            throw new IllegalStateException( "heartbeatTimeout < heartbeatInterval * 2" );
+        this.heartbeat = client.getUrl().getParameter(Constants.HEARTBEAT_KEY, dubbo != null && dubbo.startsWith("1.0.") ? Constants.DEFAULT_HEARTBEAT : 0);
+        this.heartbeatTimeout = client.getUrl().getParameter(Constants.HEARTBEAT_TIMEOUT_KEY, heartbeat * 3);
+        if (heartbeatTimeout < heartbeat * 2) {
+            throw new IllegalStateException("heartbeatTimeout < heartbeatInterval * 2");
         }
         startHeatbeatTimer();
     }
@@ -112,7 +112,6 @@ public class HeaderExchangeClient implements ExchangeClient {
     }
 
 
-
     public void reconnect() throws RemotingException {
         client.reconnect();
     }
@@ -135,29 +134,29 @@ public class HeaderExchangeClient implements ExchangeClient {
 
     private void startHeatbeatTimer() {
         stopHeartbeatTimer();
-        if ( heartbeat > 0 ) {
+        if (heartbeat > 0) {
             heatbeatTimer = scheduled.scheduleWithFixedDelay(
-                    new HeartBeatTask( new HeartBeatTask.ChannelProvider() {
+                    new HeartBeatTask(new HeartBeatTask.ChannelProvider() {
                         public Collection<Channel> getChannels() {
-                            return Collections.<Channel>singletonList( HeaderExchangeClient.this );
+                            return Collections.<Channel>singletonList(HeaderExchangeClient.this);
                         }
                     }, heartbeat, heartbeatTimeout),
-                    heartbeat, heartbeat, TimeUnit.MILLISECONDS );
+                    heartbeat, heartbeat, TimeUnit.MILLISECONDS);
         }
     }
 
     private void stopHeartbeatTimer() {
-        if (heatbeatTimer != null && ! heatbeatTimer.isCancelled()) {
+        if (heatbeatTimer != null && !heatbeatTimer.isCancelled()) {
             try {
                 heatbeatTimer.cancel(true);
                 scheduled.purge();
-            } catch ( Throwable e ) {
+            } catch (Throwable e) {
                 if (logger.isWarnEnabled()) {
                     logger.warn(e.getMessage(), e);
                 }
             }
         }
-        heatbeatTimer =null;
+        heatbeatTimer = null;
     }
 
     private void doClose() {

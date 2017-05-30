@@ -22,7 +22,7 @@ import com.git.wuqf.xiaokuo.common.extension.SPI;
 
 /**
  * SpiExtensionFactory
- * 
+ *
  * @author william.liangf
  */
 public class SpiExtensionFactory implements ExtensionFactory {

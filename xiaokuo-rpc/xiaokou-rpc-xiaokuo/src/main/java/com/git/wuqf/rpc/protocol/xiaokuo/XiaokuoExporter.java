@@ -9,9 +9,9 @@ import java.util.Map;
 /**
  * Created by wuqf on 17-3-11.
  */
-public class XiaokuoExporter<T> extends AbstractExporter{
+public class XiaokuoExporter<T> extends AbstractExporter {
     private String key;
-    private Map<String,Exporter<?>> exporters;
+    private Map<String, Exporter<?>> exporters;
 
     public XiaokuoExporter(Invoker invoker, String key, Map<String, Exporter<?>> exporters) {
         super(invoker);

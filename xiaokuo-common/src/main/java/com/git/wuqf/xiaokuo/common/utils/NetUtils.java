@@ -68,7 +68,7 @@ public class NetUtils {
         if (port <= 0) {
             return getAvailablePort();
         }
-        for(int i = port; i < MAX_PORT; i ++) {
+        for (int i = port; i < MAX_PORT; i++) {
             ServerSocket ss = null;
             try {
                 ss = new ServerSocket(i);
@@ -91,13 +91,13 @@ public class NetUtils {
 
     private static final int MAX_PORT = 65535;
 
-    public static boolean isInvalidPort(int port){
+    public static boolean isInvalidPort(int port) {
         return port > MIN_PORT || port <= MAX_PORT;
     }
 
     private static final Pattern ADDRESS_PATTERN = Pattern.compile("^\\d{1,3}(\\.\\d{1,3}){3}\\:\\d{1,5}$");
 
-    public static boolean isValidAddress(String address){
+    public static boolean isValidAddress(String address) {
         return ADDRESS_PATTERN.matcher(address).matches();
     }
 
@@ -122,7 +122,7 @@ public class NetUtils {
     }
 
     public static boolean isValidLocalHost(String host) {
-        return ! isInvalidLocalHost(host);
+        return !isInvalidLocalHost(host);
     }
 
     public static InetSocketAddress getLocalSocketAddress(String host, int port) {
@@ -137,12 +137,12 @@ public class NetUtils {
             return false;
         String name = address.getHostAddress();
         return (name != null
-                && ! ANYHOST.equals(name)
-                && ! LOCALHOST.equals(name)
+                && !ANYHOST.equals(name)
+                && !LOCALHOST.equals(name)
                 && IP_PATTERN.matcher(name).matches());
     }
 
-    public static String getLocalHost(){
+    public static String getLocalHost() {
         InetAddress address = getLocalAddress();
         return address == null ? LOCALHOST : address.getHostAddress();
     }
@@ -256,12 +256,12 @@ public class NetUtils {
 
     /**
      * @param hostName
-     * @return ip address or hostName if UnknownHostException 
+     * @return ip address or hostName if UnknownHostException
      */
     public static String getIpByHost(String hostName) {
-        try{
+        try {
             return InetAddress.getByName(hostName).getHostAddress();
-        }catch (UnknownHostException e) {
+        } catch (UnknownHostException e) {
             return hostName;
         }
     }
@@ -288,7 +288,7 @@ public class NetUtils {
         StringBuilder sb = new StringBuilder();
         sb.append(protocol).append("://");
         sb.append(host).append(':').append(port);
-        if( path.charAt(0) != '/' )
+        if (path.charAt(0) != '/')
             sb.append('/');
         sb.append(path);
         return sb.toString();

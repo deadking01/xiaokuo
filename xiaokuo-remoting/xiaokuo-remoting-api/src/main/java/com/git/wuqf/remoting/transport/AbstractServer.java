@@ -22,14 +22,15 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
 
     public AbstractServer(URL url, ChannelHandler channelHandler) {
         super(url, channelHandler);
-        localAddress = new InetSocketAddress(url.getHost(),url.getPort());
-        bindAddress =  new InetSocketAddress(url.getHost(),url.getPort());;
+        localAddress = new InetSocketAddress(url.getHost(), url.getPort());
+        bindAddress = new InetSocketAddress(url.getHost(), url.getPort());
+        ;
         doOpen();
     }
 
-    protected abstract void doOpen() ;
+    protected abstract void doOpen();
 
-    protected abstract void doClose() ;
+    protected abstract void doClose();
 
     @Override
     public boolean isBound() {
@@ -45,23 +46,24 @@ public abstract class AbstractServer extends AbstractEndpoint implements Server 
     @Override
     public void send(Object message, boolean sent) throws RemotingException {
         Collection<Channel> channels = getChannels();
-        for(Channel channel :channels){
-            channel.send(message,sent);
+        for (Channel channel : channels) {
+            channel.send(message, sent);
         }
     }
 
     @Override
     public void send(Object message) throws RemotingException {
         Collection<Channel> channels = getChannels();
-        for(Channel channel :channels){
+        for (Channel channel : channels) {
             channel.send(message);
         }
     }
+
     public SocketAddress getBindAddress() {
         return bindAddress;
     }
 
-    public void close(){
+    public void close() {
         doClose();
     }
 

@@ -1,6 +1,7 @@
 package com.git.wuqf.xiaokuo.registry;
 
 import com.git.wuqf.xiaokuo.common.URL;
+
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ public interface NotifyListener {
 
     /**
      * 当收到服务变更通知时触发。
-     *
+     * <p>
      * 通知需处理契约：<br>
      * 1. 总是以服务接口和数据类型为维度全量通知，即不会通知一个服务的同类型的部分数据，用户不需要对比上一次通知结果。<br>
      * 2. 订阅时的第一次通知，必须是一个服务的所有类型数据的全量通知。<br>

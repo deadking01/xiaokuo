@@ -32,7 +32,7 @@ public class XiaokuoInvoker<T> extends AbstractInvoker {
         final String methodName = inv.getMethodName();
         ExchangeClient currentClient = clients[0];
         currentClient.send(inv);
-        int timeout = getUrl().getMethodParameter(methodName, Constants.TIMEOUT_KEY,Constants.DEFAULT_TIMEOUT);
+        int timeout = getUrl().getMethodParameter(methodName, Constants.TIMEOUT_KEY, Constants.DEFAULT_TIMEOUT);
         RpcContext.getContext().setFuture(null);
         return (Result) currentClient.request(inv, timeout).get();
     }

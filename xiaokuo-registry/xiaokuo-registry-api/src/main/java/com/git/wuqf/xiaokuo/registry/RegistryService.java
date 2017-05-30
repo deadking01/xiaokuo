@@ -1,6 +1,7 @@
 package com.git.wuqf.xiaokuo.registry;
 
 import com.git.wuqf.xiaokuo.common.URL;
+
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
 public interface RegistryService {
     /**
      * 注册数据，比如：提供者地址，消费者地址，路由规则，覆盖规则，等数据。
-     *
+     * <p>
      * 注册需处理契约：<br>
      * 1. 当URL设置了check=false时，注册失败后不报错，在后台定时重试，否则抛出异常。<br>
      * 2. 当URL设置了dynamic=false参数，则需持久存储，否则，当注册者出现断电等情况异常退出时，需自动删除。<br>
@@ -23,7 +24,7 @@ public interface RegistryService {
 
     /**
      * 取消注册.
-     *
+     * <p>
      * 取消注册需处理契约：<br>
      * 1. 如果是dynamic=false的持久存储数据，找不到注册数据，则抛IllegalStateException，否则忽略。<br>
      * 2. 按全URL匹配取消注册。<br>
@@ -34,7 +35,7 @@ public interface RegistryService {
 
     /**
      * 订阅符合条件的已注册数据，当有注册数据变更时自动推送.
-     *
+     * <p>
      * 订阅需处理契约：<br>
      * 1. 当URL设置了check=false时，订阅失败后不报错，在后台定时重试。<br>
      * 2. 当URL设置了category=routers，只通知指定分类的数据，多个分类用逗号分隔，并允许星号通配，表示订阅所有分类数据。<br>
@@ -44,19 +45,19 @@ public interface RegistryService {
      * 6. 允许URI相同但参数不同的URL并存，不能覆盖。<br>
      * 7. 必须阻塞订阅过程，等第一次通知完后再返回。<br>
      *
-     * @param url 订阅条件，不允许为空，如：consumer://10.20.153.10/com.alibaba.foo.BarService?version=1.0.0&application=kylin
+     * @param url      订阅条件，不允许为空，如：consumer://10.20.153.10/com.alibaba.foo.BarService?version=1.0.0&application=kylin
      * @param listener 变更事件监听器，不允许为空
      */
     void subscribe(URL url, NotifyListener listener);
 
     /**
      * 取消订阅.
-     *
+     * <p>
      * 取消订阅需处理契约：<br>
      * 1. 如果没有订阅，直接忽略。<br>
      * 2. 按全URL匹配取消订阅。<br>
      *
-     * @param url 订阅条件，不允许为空，如：consumer://10.20.153.10/com.alibaba.foo.BarService?version=1.0.0&application=kylin
+     * @param url      订阅条件，不允许为空，如：consumer://10.20.153.10/com.alibaba.foo.BarService?version=1.0.0&application=kylin
      * @param listener 变更事件监听器，不允许为空
      */
     void unsubscribe(URL url, NotifyListener listener);
@@ -64,9 +65,9 @@ public interface RegistryService {
     /**
      * 查询符合条件的已注册数据，与订阅的推模式相对应，这里为拉模式，只返回一次结果。
      *
-     * @see com.git.wuqf.xiaokuo.registry.NotifyListener#notify(List)
      * @param url 查询条件，不允许为空，如：consumer://10.20.153.10/com.alibaba.foo.BarService?version=1.0.0&application=kylin
      * @return 已注册信息列表，可能为空，含义同{@link com.git.wuqf.xiaokuo.reNotifyListener#notify(List<URL>)}的参数。
+     * @see com.git.wuqf.xiaokuo.registry.NotifyListener#notify(List)
      */
     List<URL> lookup(URL url);
 }

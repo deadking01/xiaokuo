@@ -21,14 +21,14 @@ import com.git.wuqf.remoting.RemotingException;
 
 /**
  * TelnetHandler
- * 
+ *
  * @author william.liangf
  */
 public interface TelnetHandler {
 
     /**
      * telnet.
-     * 
+     *
      * @param channel
      * @param message
      */

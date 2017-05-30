@@ -24,14 +24,14 @@ import java.lang.reflect.Method;
 
 /**
  * InvokerHandler
- * 
+ *
  * @author william.liangf
  */
 public class InvokerInvocationHandler implements InvocationHandler {
 
     private final Invoker<?> invoker;
-    
-    public InvokerInvocationHandler(Invoker<?> handler){
+
+    public InvokerInvocationHandler(Invoker<?> handler) {
         this.invoker = handler;
     }
 

@@ -20,7 +20,7 @@ import com.git.wuqf.remoting.RemotingException;
 
 /**
  * Future. (API/SPI, Prototype, ThreadSafe)
- * 
+ *
  * @author qian.lei
  * @author william.liangf
  */
@@ -28,14 +28,14 @@ public interface ResponseFuture {
 
     /**
      * get result.
-     * 
+     *
      * @return result.
      */
     Object get() throws RemotingException;
 
     /**
      * get result with the specified timeout.
-     * 
+     *
      * @param timeoutInMillis timeout.
      * @return result.
      */
@@ -43,14 +43,14 @@ public interface ResponseFuture {
 
     /**
      * set callback.
-     * 
+     *
      * @param callback
      */
     void setCallback(ResponseCallback callback);
 
     /**
      * check is done.
-     * 
+     *
      * @return done or not.
      */
     boolean isDone();

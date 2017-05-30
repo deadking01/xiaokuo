@@ -21,6 +21,6 @@ import com.git.wuqf.remoting.exchange.ExchangeChannel;
 public interface Replier<T> {
 
 
-    Object reply(ExchangeChannel channel, T request) ;
+    Object reply(ExchangeChannel channel, T request);
 
 }

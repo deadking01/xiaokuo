@@ -23,7 +23,7 @@ import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;
 
 /**
  * Transporter facade. (API, Static, ThreadSafe)
- * 
+ *
  * @author william.liangf
  */
 public class Transporters {
@@ -71,7 +71,7 @@ public class Transporters {
         return ExtensionLoader.getExtensionLoader(Transporter.class).getAdaptiveExtension();
     }
 
-    private Transporters(){
+    private Transporters() {
     }
 
 }

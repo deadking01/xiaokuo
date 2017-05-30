@@ -23,7 +23,7 @@ public interface Codec {
      * Encode message.
      *
      * @param channel channel.
-     * @param output output stream.
+     * @param output  output stream.
      * @param message message.
      */
     void encode(Channel channel, OutputStream output, Object message) throws IOException;
@@ -31,10 +31,10 @@ public interface Codec {
     /**
      * Decode message.
      *
-     * @see #NEED_MORE_INPUT
      * @param channel channel.
-     * @param input input stream.
+     * @param input   input stream.
      * @return message or <code>NEED_MORE_INPUT</code> poison.
+     * @see #NEED_MORE_INPUT
      */
     Object decode(Channel channel, InputStream input) throws IOException;
 

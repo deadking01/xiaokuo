@@ -26,14 +26,14 @@ import java.util.List;
 
 /**
  * AdaptiveExtensionFactory
- * 
+ *
  * @author william.liangf
  */
 @Adaptive
 public class AdaptiveExtensionFactory implements ExtensionFactory {
-    
+
     private final List<ExtensionFactory> factories;
-    
+
     public AdaptiveExtensionFactory() {
         ExtensionLoader<ExtensionFactory> loader = ExtensionLoader.getExtensionLoader(ExtensionFactory.class);
         List<ExtensionFactory> list = new ArrayList<ExtensionFactory>();

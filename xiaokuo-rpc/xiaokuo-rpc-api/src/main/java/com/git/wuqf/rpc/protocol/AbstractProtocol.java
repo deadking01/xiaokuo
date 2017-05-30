@@ -36,7 +36,7 @@ public abstract class AbstractProtocol implements Protocol {
     }
 
     public void destory() {
-        for (Invoker<?> invoker : invokers){
+        for (Invoker<?> invoker : invokers) {
             if (invoker != null) {
                 invokers.remove(invoker);
                 try {
@@ -63,20 +63,21 @@ public abstract class AbstractProtocol implements Protocol {
             }
         }
     }
+
     protected static int getServerShutdownTimeout() {
         int timeout = Constants.DEFAULT_SERVER_SHUTDOWN_TIMEOUT;
         String value = ConfigUtils.getProperty(Constants.SHUTDOWN_WAIT_KEY);
         if (value != null && value.length() > 0) {
-            try{
+            try {
                 timeout = Integer.parseInt(value);
-            }catch (Exception e) {
+            } catch (Exception e) {
             }
         } else {
             value = ConfigUtils.getProperty(Constants.SHUTDOWN_WAIT_SECONDS_KEY);
             if (value != null && value.length() > 0) {
-                try{
+                try {
                     timeout = Integer.parseInt(value) * 1000;
-                }catch (Exception e) {
+                } catch (Exception e) {
                 }
             }
         }

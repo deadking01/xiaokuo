@@ -27,7 +27,7 @@ public class NettyChannel extends AbstractPeer implements Channel {
 
     public NettyChannel(io.netty.channel.Channel channel, URL url, ChannelHandler handler) {
         super(url, handler);
-        this.channel=channel;
+        this.channel = channel;
         this.handler = handler;
     }
 

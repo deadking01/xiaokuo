@@ -22,7 +22,7 @@ public class XiaokuoProtocolTest {
     @Test
     public void testDemoProtocol() throws Exception {
         DemoService service = new DemoServiceImpl();
-        Invoker<DemoService> serviceInvoker = proxy.getInvoker(service, DemoService.class,u);
+        Invoker<DemoService> serviceInvoker = proxy.getInvoker(service, DemoService.class, u);
         protocol.export(serviceInvoker);
 
         Invoker<DemoService> clientInvoker = protocol.refer(DemoService.class,
@@ -30,7 +30,7 @@ public class XiaokuoProtocolTest {
         service = proxy.getProxy(clientInvoker);
 
 
-        int size=service.getSize(new String[]{"a", "b", "c"});
+        int size = service.getSize(new String[]{"a", "b", "c"});
         assertEquals(3, size);
     }
 }

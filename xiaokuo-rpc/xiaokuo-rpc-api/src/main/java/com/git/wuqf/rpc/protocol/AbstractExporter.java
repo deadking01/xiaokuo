@@ -6,14 +6,14 @@ import com.git.wuqf.rpc.Invoker;
 /**
  * Created by wuqf on 17-3-11.
  */
-public abstract class AbstractExporter<T> implements Exporter{
+public abstract class AbstractExporter<T> implements Exporter {
 
     private final Invoker<T> invoker;
 
     private volatile boolean unexported = false;
 
-    public AbstractExporter(Invoker<T> invoker){
-        this.invoker=invoker;
+    public AbstractExporter(Invoker<T> invoker) {
+        this.invoker = invoker;
     }
 
     @Override
@@ -23,10 +23,10 @@ public abstract class AbstractExporter<T> implements Exporter{
 
     @Override
     public void unexport() {
-        if(unexported){
+        if (unexported) {
             return;
         }
-        unexported=true;
+        unexported = true;
         getInvoker().destory();
     }
 

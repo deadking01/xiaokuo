@@ -17,6 +17,7 @@
 package com.git.wuqf.xiaokuo.common.serialize.support.nativejava;
 
 
+import com.git.wuqf.xiaokuo.common.URL;
 import com.git.wuqf.xiaokuo.common.serialize.ObjectInput;
 import com.git.wuqf.xiaokuo.common.serialize.ObjectOutput;
 import com.git.wuqf.xiaokuo.common.serialize.Serialization;
@@ -24,7 +25,6 @@ import com.git.wuqf.xiaokuo.common.serialize.Serialization;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import com.git.wuqf.xiaokuo.common.URL;
 
 /**
  * @author <a href="mailto:gang.lvg@alibaba-inc.com">kimi</a>

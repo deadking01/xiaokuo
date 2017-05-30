@@ -59,7 +59,7 @@ public class NettyServer<T> extends AbstractServer implements Server {
                         p.addLast(new LoggingHandler(LogLevel.TRACE));
                         p.addLast(
                                 new ObjectEncoder(),
-                                new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);
+                                new ObjectDecoder(ClassResolvers.cacheDisabled(null)), nettyHandler);
                     }
                 });
 

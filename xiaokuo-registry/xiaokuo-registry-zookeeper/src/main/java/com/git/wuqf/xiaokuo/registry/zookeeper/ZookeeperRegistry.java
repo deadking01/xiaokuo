@@ -29,7 +29,7 @@ public class ZookeeperRegistry extends AbstractRegistry {
     private final IZkClient zkClient;
     private CountDownLatch latch = new CountDownLatch(1);
     private final static int DEFAULT_ZOOKEEPER_PORT = 2181;
-    private final String        root;
+    private final String root;
 
     public ZookeeperRegistry(URL url, String zookeeperConnectionString) {
         super(url);
@@ -40,7 +40,7 @@ public class ZookeeperRegistry extends AbstractRegistry {
                 latch.countDown();
             }
         });
-        this.root=DEFAULT_REGISTRY_PATH;
+        this.root = DEFAULT_REGISTRY_PATH;
     }
 
     @Override
@@ -56,11 +56,11 @@ public class ZookeeperRegistry extends AbstractRegistry {
     @Override
     public void register(URL serviceUrl) {
         String path = serviceUrl.getPath();
-        if(StringUtils.isEmpty(path)){
-            path=DEFAULT_REGISTRY_PATH;
+        if (StringUtils.isEmpty(path)) {
+            path = DEFAULT_REGISTRY_PATH;
         }
-        String serviceInfo=serviceUrl.getHost()+":"+String.valueOf(serviceUrl.getPort());
-        byte[] data =serviceInfo.getBytes();
+        String serviceInfo = serviceUrl.getHost() + ":" + String.valueOf(serviceUrl.getPort());
+        byte[] data = serviceInfo.getBytes();
 
         zkClient.createPersistent(path, true);
         zkClient.writeData(path, data);
@@ -100,16 +100,17 @@ public class ZookeeperRegistry extends AbstractRegistry {
             throw new RpcException("Failed to lookup " + url + " from zookeeper " + getUrl() + ", cause: " + e.getMessage(), e);
         }
     }
+
     private String[] toCategoriesPath(URL url) {
         String[] categroies;
         if (Constants.ANY_VALUE.equals(url.getParameter(Constants.CATEGORY_KEY))) {
-            categroies = new String[] {Constants.PROVIDERS_CATEGORY, Constants.CONSUMERS_CATEGORY,
+            categroies = new String[]{Constants.PROVIDERS_CATEGORY, Constants.CONSUMERS_CATEGORY,
                     Constants.ROUTERS_CATEGORY, Constants.CONFIGURATORS_CATEGORY};
         } else {
-            categroies = url.getParameter(Constants.CATEGORY_KEY, new String[] {Constants.DEFAULT_CATEGORY});
+            categroies = url.getParameter(Constants.CATEGORY_KEY, new String[]{Constants.DEFAULT_CATEGORY});
         }
         String[] paths = new String[categroies.length];
-        for (int i = 0; i < categroies.length; i ++) {
+        for (int i = 0; i < categroies.length; i++) {
             paths[i] = toServicePath(url) + Constants.PATH_SEPARATOR + categroies[i];
         }
         return paths;
@@ -161,6 +162,7 @@ public class ZookeeperRegistry extends AbstractRegistry {
         }
         return address;
     }
+
     private String toServicePath(URL url) {
         String name = url.getServiceInterface();
         if (Constants.ANY_VALUE.equals(name)) {
@@ -168,6 +170,7 @@ public class ZookeeperRegistry extends AbstractRegistry {
         }
         return toRootDir() + URL.encode(name);
     }
+
     private String toRootDir() {
         if (root.equals(Constants.PATH_SEPARATOR)) {
             return root;

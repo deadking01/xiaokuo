@@ -19,7 +19,7 @@ import com.git.wuqf.remoting.exchange.ExchangeChannel;
 
 /**
  * ExchangeClient. (API/SPI, Prototype, ThreadSafe)
- * 
+ *
  * @author william.liangf
  */
 public interface ExchangeClient extends Client, ExchangeChannel {

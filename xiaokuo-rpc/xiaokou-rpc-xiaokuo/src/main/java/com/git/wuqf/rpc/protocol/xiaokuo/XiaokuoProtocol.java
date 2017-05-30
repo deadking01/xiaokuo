@@ -191,7 +191,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         return DEFAULT_PORT;
     }
 
-    public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException, RemotingException {
+    public <T> Exporter<T> export(Invoker<T> invoker) throws RpcException {
         URL url = invoker.getUrl();
 
         // export service.
@@ -219,9 +219,9 @@ public class XiaokuoProtocol extends AbstractProtocol {
         return exporter;
     }
 
-    private void openServer(URL url) throws RemotingException {
+    private void openServer(URL url) {
         // find server.
-        String key =serviceKey(url);
+        String key = serviceKey(url);
         //client 也可以暴露一个只有server可以调用的服务。
         boolean isServer = url.getParameter(Constants.IS_SERVER_KEY, true);
         if (isServer) {
@@ -235,7 +235,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
         }
     }
 
-    private ExchangeServer createServer(URL url) throws RemotingException {
+    private ExchangeServer createServer(URL url) {
         //默认开启server关闭时发送readonly事件
         url = url.addParameterIfAbsent(Constants.CHANNEL_READONLYEVENT_SENT_KEY, Boolean.TRUE.toString());
         //默认开启heartbeat
@@ -246,9 +246,13 @@ public class XiaokuoProtocol extends AbstractProtocol {
 //            throw new RpcException("Unsupported server type: " + str + ", url: " + url);
 
         url = url.addParameter(Constants.CODEC_KEY, Version.isCompatibleVersion() ? COMPATIBLE_CODEC_NAME : XiaokuoCodec.NAME);
-        ExchangeServer server;
+        ExchangeServer server = null;
 
-        server = Exchangers.bind(url, requestHandler);
+        try {
+            server = Exchangers.bind(url, requestHandler);
+        } catch (RemotingException e) {
+            e.printStackTrace();
+        }
 
         str = url.getParameter(Constants.CLIENT_KEY);
         if (str != null && str.length() > 0) {
@@ -260,14 +264,14 @@ public class XiaokuoProtocol extends AbstractProtocol {
         return server;
     }
 
-    public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException, RemotingException {
+    public <T> Invoker<T> refer(Class<T> serviceType, URL url) throws RpcException {
         // create rpc invoker.
         XiaokuoInvoker<T> invoker = new XiaokuoInvoker<T>(serviceType, url, getClients(url), invokers);
         invokers.add(invoker);
         return invoker;
     }
 
-    private ExchangeClient[] getClients(URL url) throws RemotingException {
+    private ExchangeClient[] getClients(URL url) throws RpcException {
         //是否共享连接
         boolean service_share_connect = false;
         int connections = url.getParameter(Constants.CONNECTIONS_KEY, 0);
@@ -291,7 +295,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
     /**
      * 获取共享连接
      */
-    private ExchangeClient getSharedClient(URL url) throws RemotingException {
+    private ExchangeClient getSharedClient(URL url) throws RpcException {
         String key = url.getAddress();
         ReferenceCountExchangeClient client = referenceClientMap.get(key);
         if (client != null) {
@@ -314,7 +318,7 @@ public class XiaokuoProtocol extends AbstractProtocol {
     /**
      * 创建新连接.
      */
-    private ExchangeClient initClient(URL url) throws RemotingException {
+    private ExchangeClient initClient(URL url) throws RpcException {
 
         // client type setting.
         String str = url.getParameter(Constants.CLIENT_KEY, url.getParameter(Constants.SERVER_KEY, Constants.DEFAULT_REMOTING_CLIENT));
@@ -337,7 +341,12 @@ public class XiaokuoProtocol extends AbstractProtocol {
         if (url.getParameter(Constants.LAZY_CONNECT_KEY, false)) {
             client = new LazyConnectExchangeClient(url, requestHandler);
         } else {
-            client = Exchangers.connect(url, requestHandler);
+            try {
+                client = Exchangers.connect(url, requestHandler);
+            } catch (RemotingException e) {
+                e.printStackTrace();
+                throw new RpcException("xxxx");
+            }
         }
 
         return client;

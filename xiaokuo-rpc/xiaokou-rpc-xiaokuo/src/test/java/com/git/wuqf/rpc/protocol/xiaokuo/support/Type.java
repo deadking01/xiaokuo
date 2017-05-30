@@ -15,7 +15,6 @@
  */
 package com.git.wuqf.rpc.protocol.xiaokuo.support;
 
-public enum Type
-{
-	High, Normal, Lower
+public enum Type {
+    High, Normal, Lower
 }

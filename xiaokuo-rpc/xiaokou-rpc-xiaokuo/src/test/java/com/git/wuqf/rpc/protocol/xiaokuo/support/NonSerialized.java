@@ -17,7 +17,7 @@ package com.git.wuqf.rpc.protocol.xiaokuo.support;
 
 /**
  * NonSerialized
- * 
+ *
  * @author william.liangf
  */
 public class NonSerialized {

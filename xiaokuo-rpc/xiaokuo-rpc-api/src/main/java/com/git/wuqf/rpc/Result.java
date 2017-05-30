@@ -14,12 +14,12 @@ public interface Result {
 
     /**
      * Recreate.
-     *
+     * <p>
      * <code>
      * if (hasException()) {
-     *     throw getException();
+     * throw getException();
      * } else {
-     *     return getValue();
+     * return getValue();
      * }
      * </code>
      *

@@ -18,13 +18,13 @@ import java.net.InetSocketAddress;
  */
 public class HeaderExchangeChannel implements ExchangeChannel {
 
-    private static String CHANNEL_KEY=HeaderExchangeChannel.class.getName()+"CHANNEL";
+    private static String CHANNEL_KEY = HeaderExchangeChannel.class.getName() + "CHANNEL";
 
     private Channel channel;
 
-    private boolean closed=false;
+    private boolean closed = false;
 
-    HeaderExchangeChannel(Channel channel){
+    HeaderExchangeChannel(Channel channel) {
         if (channel == null) {
             throw new IllegalArgumentException("channel == null");
         }
@@ -32,12 +32,12 @@ public class HeaderExchangeChannel implements ExchangeChannel {
     }
 
     @Override
-    public ResponseFuture request(Object request) throws RemotingException{
+    public ResponseFuture request(Object request) throws RemotingException {
         return request(request, channel.getUrl().getPositiveParameter(Constants.TIMEOUT_KEY, Constants.DEFAULT_TIMEOUT));
     }
 
     @Override
-    public ResponseFuture request(Object request, int timeout) throws RemotingException{
+    public ResponseFuture request(Object request, int timeout) throws RemotingException {
 
         // create request.
         Request req = new Request();
@@ -45,9 +45,9 @@ public class HeaderExchangeChannel implements ExchangeChannel {
         req.setTwoWay(true);
         req.setData(request);
         DefaultFuture future = new DefaultFuture(channel, req, timeout);
-        try{
+        try {
             channel.send(req);
-        }catch (RemotingException e) {
+        } catch (RemotingException e) {
             future.cancel();
             throw e;
         }
@@ -144,7 +144,7 @@ public class HeaderExchangeChannel implements ExchangeChannel {
     }
 
     static void removeChannelIfDisconnected(Channel ch) {
-        if (ch != null && ! ch.isConnected()) {
+        if (ch != null && !ch.isConnected()) {
             ch.removeAttribute(CHANNEL_KEY);
         }
     }

@@ -6,7 +6,6 @@ import com.git.wuqf.remoting.ExchangeServer;
 import com.git.wuqf.remoting.RemotingException;
 import com.git.wuqf.remoting.exchange.support.ExchangeHandlerDispatcher;
 import com.git.wuqf.remoting.exchange.support.Replier;
-import com.git.wuqf.remoting.exchange.support.header.HeaderExchanger;
 import com.git.wuqf.remoting.transport.ChannelHandlerAdapter;
 import com.git.wuqf.xiaokuo.common.Constants;
 import com.git.wuqf.xiaokuo.common.URL;
@@ -21,7 +20,7 @@ public class Exchangers {
         return bind(URL.valueOf(url), replier);
     }
 
-    public static ExchangeServer bind(URL url,  Replier<?> replier) throws RemotingException {
+    public static ExchangeServer bind(URL url, Replier<?> replier) throws RemotingException {
         return bind(url, new ChannelHandlerAdapter(), replier);
     }
 
@@ -92,7 +91,7 @@ public class Exchangers {
         return ExtensionLoader.getExtensionLoader(Exchanger.class).getExtension(type);
     }
 
-    private Exchangers(){
+    private Exchangers() {
     }
 
 }

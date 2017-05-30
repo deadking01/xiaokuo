@@ -14,7 +14,7 @@ import java.net.InetSocketAddress;
 public abstract class AbstractClient extends AbstractEndpoint implements Client {
 
     public AbstractClient(URL url, ChannelHandler channelHandler) {
-        super(url,channelHandler);
+        super(url, channelHandler);
         doOpen();
         doConnect();
     }
@@ -26,14 +26,14 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
 
     @Override
     public InetSocketAddress getLocalAddress() {
-        Channel channel=getChannel();
+        Channel channel = getChannel();
         return channel.getRemoteAddress();
     }
 
     @Override
     public void send(Object message, boolean sent) throws RemotingException {
         Channel channel = getChannel();
-        channel.send(message,sent);
+        channel.send(message, sent);
     }
 
     @Override
@@ -41,50 +41,55 @@ public abstract class AbstractClient extends AbstractEndpoint implements Client 
         Channel channel = getChannel();
         channel.send(message);
     }
-    protected void connect(){
+
+    protected void connect() {
         doConnect();
     }
+
     public void disconnect() {
         Channel channel = getChannel();
         if (channel != null) {
             channel.close();
         }
     }
+
     @Override
     public void reconnect() {
         disconnect();
         connect();
     }
+
     public void close() {
         disconnect();
     }
+
     /**
      * Open client.
      *
      * @
      */
-    protected abstract void doOpen() ;
+    protected abstract void doOpen();
 
     /**
      * Close client.
      *
      * @
      */
-    protected abstract void doClose() ;
+    protected abstract void doClose();
 
     /**
      * Connect to server.
      *
      * @
      */
-    protected abstract void doConnect() ;
+    protected abstract void doConnect();
 
     /**
      * disConnect to server.
      *
      * @
      */
-    protected abstract void doDisconnect() ;
+    protected abstract void doDisconnect();
 
     protected abstract Channel getChannel();
 }

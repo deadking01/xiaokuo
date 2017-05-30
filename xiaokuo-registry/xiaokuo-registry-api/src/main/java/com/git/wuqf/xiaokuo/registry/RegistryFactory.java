@@ -10,7 +10,7 @@ public interface RegistryFactory {
 
     /**
      * 连接注册中心.
-     *
+     * <p>
      * 连接注册中心需处理契约：<br>
      * 1. 当设置check=false时表示不检查连接，否则在连接不上时抛出异常。<br>
      * 2. 支持URL上的username:password权限认证。<br>

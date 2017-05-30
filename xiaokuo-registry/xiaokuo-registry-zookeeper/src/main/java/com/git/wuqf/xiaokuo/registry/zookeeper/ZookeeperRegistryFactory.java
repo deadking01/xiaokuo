@@ -12,18 +12,18 @@ import com.git.wuqf.xiaokuo.common.URL;
 public class ZookeeperRegistryFactory extends AbstractRegistryFactory {
     private String zookeeperConnectionString;
 
-    public ZookeeperRegistryFactory(String zookeeperConnectionString){
-        this.zookeeperConnectionString=zookeeperConnectionString;
+    public ZookeeperRegistryFactory(String zookeeperConnectionString) {
+        this.zookeeperConnectionString = zookeeperConnectionString;
     }
 
     @Override
     public Registry getRegistry(URL url) {
-        return new ZookeeperRegistry(url,zookeeperConnectionString);
+        return new ZookeeperRegistry(url, zookeeperConnectionString);
     }
 
     @Override
     protected Registry createRegistry(URL url) {
-        return new ZookeeperRegistry(url,zookeeperConnectionString);
+        return new ZookeeperRegistry(url, zookeeperConnectionString);
     }
 
     public String getZookeeperConnectionString() {

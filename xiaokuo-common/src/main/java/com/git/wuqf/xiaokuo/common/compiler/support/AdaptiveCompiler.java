@@ -22,7 +22,7 @@ import com.git.wuqf.xiaokuo.common.compiler.Compiler;
 
 /**
  * AdaptiveCompiler. (SPI, Singleton, ThreadSafe)
- * 
+ *
  * @author william.liangf
  */
 @Adaptive

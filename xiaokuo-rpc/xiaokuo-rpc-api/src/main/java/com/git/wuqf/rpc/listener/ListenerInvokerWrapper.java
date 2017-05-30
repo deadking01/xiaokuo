@@ -33,10 +33,10 @@ public class ListenerInvokerWrapper<T> implements Invoker<T> {
     private static final Logger logger = LoggerFactory.getLogger(ListenerInvokerWrapper.class);
 
     private final Invoker<T> invoker;
-    
+
     private final List<InvokerListener> listeners;
 
-    public ListenerInvokerWrapper(Invoker<T> invoker, List<InvokerListener> listeners){
+    public ListenerInvokerWrapper(Invoker<T> invoker, List<InvokerListener> listeners) {
         if (invoker == null) {
             throw new IllegalArgumentException("invoker == null");
         }
@@ -70,10 +70,10 @@ public class ListenerInvokerWrapper<T> implements Invoker<T> {
     public Result invoke(Invocation invocation) throws RpcException {
         return invoker.invoke(invocation);
     }
-    
+
     @Override
     public String toString() {
-        return getInterface() + " -> " + getUrl()==null?" ":getUrl().toString();
+        return getInterface() + " -> " + getUrl() == null ? " " : getUrl().toString();
     }
 
     public void destory() {

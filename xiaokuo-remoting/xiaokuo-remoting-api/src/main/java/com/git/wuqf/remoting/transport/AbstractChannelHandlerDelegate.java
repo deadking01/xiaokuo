@@ -18,7 +18,7 @@ public abstract class AbstractChannelHandlerDelegate implements ChannelHandlerDe
 
     public ChannelHandler getHandler() {
         if (handler instanceof ChannelHandlerDelegate) {
-            return ((ChannelHandlerDelegate)handler).getHandler();
+            return ((ChannelHandlerDelegate) handler).getHandler();
         }
         return handler;
     }

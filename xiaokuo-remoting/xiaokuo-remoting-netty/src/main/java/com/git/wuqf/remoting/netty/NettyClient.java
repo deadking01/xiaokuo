@@ -47,7 +47,7 @@ public class NettyClient extends AbstractClient {
                         p.addLast(new LoggingHandler(LogLevel.TRACE));
                         p.addLast(
                                 new ObjectEncoder(),
-                                new ObjectDecoder(ClassResolvers.cacheDisabled(null)),nettyHandler);
+                                new ObjectDecoder(ClassResolvers.cacheDisabled(null)), nettyHandler);
                     }
                 });
     }

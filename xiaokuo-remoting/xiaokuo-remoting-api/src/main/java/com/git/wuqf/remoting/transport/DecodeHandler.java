@@ -7,13 +7,14 @@ import com.git.wuqf.remoting.RemotingException;
 /**
  * Created by wuqf on 17-2-26.
  */
-public class DecodeHandler implements ChannelHandler{
+public class DecodeHandler implements ChannelHandler {
 
     protected ChannelHandler handler;
 
-    public DecodeHandler(ChannelHandler channelHandler){
-        this.handler=channelHandler;
+    public DecodeHandler(ChannelHandler channelHandler) {
+        this.handler = channelHandler;
     }
+
     @Override
     public void connected(Channel channel) throws RemotingException {
         handler.connected(channel);
@@ -26,12 +27,12 @@ public class DecodeHandler implements ChannelHandler{
 
     @Override
     public void sent(Channel channel, Object message) throws RemotingException {
-        handler.sent(channel,message);
+        handler.sent(channel, message);
     }
 
     @Override
     public void received(Channel channel, Object message) throws RemotingException {
-        handler.received(channel,message);
+        handler.received(channel, message);
     }
 
     @Override

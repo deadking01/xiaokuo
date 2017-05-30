@@ -25,7 +25,7 @@ import com.git.wuqf.xiaokuo.common.URL;
 public class NettyTransporter implements Transporter {
 
     public static final String NAME = "netty";
-    
+
     public Server bind(URL url, ChannelHandler listener) throws RemotingException {
         return new NettyServer(url, listener);
     }

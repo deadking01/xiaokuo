@@ -27,21 +27,21 @@ import java.util.Map;
 
 /**
  * RPC Invocation.
- * 
- * @serial Don't change the class name and properties.
+ *
  * @author qian.lei
+ * @serial Don't change the class name and properties.
  */
 public class RpcInvocation implements Invocation, Serializable {
 
     private static final long serialVersionUID = -4355285085441097045L;
 
-    private String               methodName;
+    private String methodName;
 
-    private Class<?>[]           parameterTypes;
+    private Class<?>[] parameterTypes;
 
-    private Object[]             arguments;
+    private Object[] arguments;
 
-    private Map<String, String>  attachments;
+    private Map<String, String> attachments;
 
     private transient Invoker<?> invoker;
 
@@ -49,7 +49,7 @@ public class RpcInvocation implements Invocation, Serializable {
     }
 
     public RpcInvocation(Invocation invocation, Invoker<?> invoker) {
-        this(invocation.getMethodName(), invocation.getParameterTypes(), 
+        this(invocation.getMethodName(), invocation.getParameterTypes(),
                 invocation.getArguments(), new HashMap<String, String>(invocation.getAttachments()),
                 invocation.getInvoker());
         if (invoker != null) {
@@ -77,7 +77,7 @@ public class RpcInvocation implements Invocation, Serializable {
     }
 
     public RpcInvocation(Invocation invocation) {
-        this(invocation.getMethodName(), invocation.getParameterTypes(), 
+        this(invocation.getMethodName(), invocation.getParameterTypes(),
                 invocation.getArguments(), invocation.getAttachments(), invocation.getInvoker());
     }
 
@@ -104,7 +104,7 @@ public class RpcInvocation implements Invocation, Serializable {
         this.attachments = attachments == null ? new HashMap<String, String>() : attachments;
         this.invoker = invoker;
     }
-    
+
     public Invoker<?> getInvoker() {
         return invoker;
     }
@@ -144,7 +144,7 @@ public class RpcInvocation implements Invocation, Serializable {
     public void setAttachments(Map<String, String> attachments) {
         this.attachments = attachments == null ? new HashMap<String, String>() : attachments;
     }
-    
+
     public void setAttachment(String key, String value) {
         if (attachments == null) {
             attachments = new HashMap<String, String>();
@@ -156,28 +156,28 @@ public class RpcInvocation implements Invocation, Serializable {
         if (attachments == null) {
             attachments = new HashMap<String, String>();
         }
-        if (! attachments.containsKey(key)) {
-        	attachments.put(key, value);
+        if (!attachments.containsKey(key)) {
+            attachments.put(key, value);
         }
     }
 
     public void addAttachments(Map<String, String> attachments) {
-    	if (attachments == null) {
-    		return;
-    	}
-    	if (this.attachments == null) {
-    		this.attachments = new HashMap<String, String>();
+        if (attachments == null) {
+            return;
         }
-    	this.attachments.putAll(attachments);
+        if (this.attachments == null) {
+            this.attachments = new HashMap<String, String>();
+        }
+        this.attachments.putAll(attachments);
     }
 
     public void addAttachmentsIfAbsent(Map<String, String> attachments) {
-    	if (attachments == null) {
-    		return;
-    	}
-    	for (Map.Entry<String, String> entry : attachments.entrySet()) {
-    		setAttachmentIfAbsent(entry.getKey(), entry.getValue());
-    	}
+        if (attachments == null) {
+            return;
+        }
+        for (Map.Entry<String, String> entry : attachments.entrySet()) {
+            setAttachmentIfAbsent(entry.getKey(), entry.getValue());
+        }
     }
 
     public String getAttachment(String key) {
@@ -186,7 +186,7 @@ public class RpcInvocation implements Invocation, Serializable {
         }
         return attachments.get(key);
     }
-    
+
     public String getAttachment(String key, String defaultValue) {
         if (attachments == null) {
             return defaultValue;

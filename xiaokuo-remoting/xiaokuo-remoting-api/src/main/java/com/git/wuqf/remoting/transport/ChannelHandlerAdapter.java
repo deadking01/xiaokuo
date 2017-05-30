@@ -21,7 +21,7 @@ import com.git.wuqf.remoting.RemotingException;
 
 /**
  * ChannelHandlerAdapter.
- * 
+ *
  * @author qian.lei
  */
 public class ChannelHandlerAdapter implements ChannelHandler {

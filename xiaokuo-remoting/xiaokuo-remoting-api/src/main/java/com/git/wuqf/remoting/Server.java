@@ -6,7 +6,7 @@ import java.util.Collection;
 /**
  * Created by wuqf on 17-2-24.
  */
-public interface Server extends EndPoint,Resetable{
+public interface Server extends EndPoint, Resetable {
 
     boolean isBound();
 

@@ -13,11 +13,11 @@ import java.net.MalformedURLException;
 public class NettyTransportTest {
 
     public static void main(String[] args) throws MalformedURLException, RemotingException {
-        URL url=new URL("xiaokuo","localhost",9999);
-        NettyTransporter nettyTransports=new NettyTransporter();
+        URL url = new URL("xiaokuo", "localhost", 9999);
+        NettyTransporter nettyTransports = new NettyTransporter();
 
-        Server server=nettyTransports.bind(url,new WordHandler());
-        Client client=nettyTransports.connect(url,new WordHandler());
+        Server server = nettyTransports.bind(url, new WordHandler());
+        Client client = nettyTransports.connect(url, new WordHandler());
         client.send(new Word("aaa"));
     }
 }

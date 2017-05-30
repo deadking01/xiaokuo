@@ -18,20 +18,21 @@ package com.git.wuqf.xiaokuo.common.compiler.support;
 
 import com.git.wuqf.xiaokuo.common.utils.ClassHelper;
 import com.git.wuqf.xiaokuo.common.compiler.Compiler;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * Abstract compiler. (SPI, Prototype, ThreadSafe)
- * 
+ *
  * @author william.liangf
  */
 public abstract class AbstractCompiler implements Compiler {
-    
+
     private static final Pattern PACKAGE_PATTERN = Pattern.compile("package\\s+([$_a-zA-Z][$_a-zA-Z0-9\\.]*);");
-    
+
     private static final Pattern CLASS_PATTERN = Pattern.compile("class\\s+([$_a-zA-Z][$_a-zA-Z0-9]*)\\s+");
-    
+
     public Class<?> compile(String code, ClassLoader classLoader) {
         code = code.trim();
         Matcher matcher = PACKAGE_PATTERN.matcher(code);
@@ -52,7 +53,7 @@ public abstract class AbstractCompiler implements Compiler {
         try {
             return Class.forName(className, true, ClassHelper.getCallerClassLoader(getClass()));
         } catch (ClassNotFoundException e) {
-            if (! code.endsWith("}")) {
+            if (!code.endsWith("}")) {
                 throw new IllegalStateException("The java code not endsWith \"}\", code: \n" + code + "\n");
             }
             try {
@@ -64,7 +65,7 @@ public abstract class AbstractCompiler implements Compiler {
             }
         }
     }
-    
+
     protected abstract Class<?> doCompile(String name, String source) throws Throwable;
 
 }

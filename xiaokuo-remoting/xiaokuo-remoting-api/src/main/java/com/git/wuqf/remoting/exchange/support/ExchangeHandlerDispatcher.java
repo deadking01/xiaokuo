@@ -24,7 +24,7 @@ import com.git.wuqf.remoting.transport.ChannelHandlerDispatcher;
 
 /**
  * ExchangeHandlerDispatcher
- * 
+ *
  * @author william.liangf
  */
 public class ExchangeHandlerDispatcher implements ExchangeHandler {
@@ -34,26 +34,26 @@ public class ExchangeHandlerDispatcher implements ExchangeHandler {
     private final ChannelHandlerDispatcher handlerDispatcher;
 
     //private final TelnetHandler telnetHandler;
-    
+
     public ExchangeHandlerDispatcher() {
         replierDispatcher = new ReplierDispatcher();
         handlerDispatcher = new ChannelHandlerDispatcher();
         //telnetHandler = new TelnetHandlerAdapter();
     }
-    
-    public ExchangeHandlerDispatcher(Replier<?> replier){
+
+    public ExchangeHandlerDispatcher(Replier<?> replier) {
         replierDispatcher = new ReplierDispatcher(replier);
         handlerDispatcher = new ChannelHandlerDispatcher();
         //telnetHandler = new TelnetHandlerAdapter();
     }
-    
-    public ExchangeHandlerDispatcher(ChannelHandler... handlers){
+
+    public ExchangeHandlerDispatcher(ChannelHandler... handlers) {
         replierDispatcher = new ReplierDispatcher();
         handlerDispatcher = new ChannelHandlerDispatcher(handlers);
         //telnetHandler = new TelnetHandlerAdapter();
     }
-    
-    public ExchangeHandlerDispatcher(Replier<?> replier, ChannelHandler... handlers){
+
+    public ExchangeHandlerDispatcher(Replier<?> replier, ChannelHandler... handlers) {
         replierDispatcher = new ReplierDispatcher(replier);
         handlerDispatcher = new ChannelHandlerDispatcher(handlers);
         //telnetHandler = new TelnetHandlerAdapter();
@@ -79,9 +79,9 @@ public class ExchangeHandlerDispatcher implements ExchangeHandler {
         return this;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    public Object reply(ExchangeChannel channel, Object request)  {
-        return ((Replier)replierDispatcher).reply(channel, request);
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public Object reply(ExchangeChannel channel, Object request) {
+        return ((Replier) replierDispatcher).reply(channel, request);
     }
 
     public void connected(Channel channel) {
@@ -101,7 +101,7 @@ public class ExchangeHandlerDispatcher implements ExchangeHandler {
         handlerDispatcher.caught(channel, exception);
     }
 
-    public String telnet(Channel channel, String message)  {
+    public String telnet(Channel channel, String message) {
         return "";
     }
 
