@@ -1,12 +1,12 @@
 package com.git.wuqf.xiaokuo.rpc.protocol.xiaokuo;
 
+import com.git.wuqf.xiaokuo.common.URL;
+import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;
 import com.git.wuqf.xiaokuo.rpc.Invoker;
 import com.git.wuqf.xiaokuo.rpc.Protocol;
 import com.git.wuqf.xiaokuo.rpc.ProxyFactory;
 import com.git.wuqf.xiaokuo.rpc.protocol.xiaokuo.support.DemoService;
 import com.git.wuqf.xiaokuo.rpc.protocol.xiaokuo.support.DemoServiceImpl;
-import com.git.wuqf.xiaokuo.common.URL;
-import com.git.wuqf.xiaokuo.common.extension.ExtensionLoader;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
