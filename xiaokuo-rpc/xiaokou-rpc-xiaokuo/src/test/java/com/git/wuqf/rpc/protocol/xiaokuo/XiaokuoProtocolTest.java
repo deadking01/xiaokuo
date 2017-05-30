@@ -33,7 +33,7 @@ public class XiaokuoProtocolTest {
     }
 
     @Test
-    public void testDemoProtocol() throws Exception {
+    public void testDemoProtocol_getSize() throws Exception {
         DemoService service = new DemoServiceImpl();
         Invoker<DemoService> serviceInvoker = proxy.getInvoker(service, DemoService.class, u);
         protocol.export(serviceInvoker);
