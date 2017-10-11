@@ -75,7 +75,7 @@ public class DefaultFuture implements ResponseFuture {
         this.channel = channel;
         this.request = request;
         this.id = request.getId();
-        this.timeout = timeout > 0 ? timeout : channel.getUrl().getPositiveParameter(Constants.TIMEOUT_KEY, Constants.DEFAULT_TIMEOUT);
+        this.timeout = 3000;
         // put into waiting map.
         FUTURES.put(id, this);
         CHANNELS.put(id, channel);
@@ -95,7 +95,8 @@ public class DefaultFuture implements ResponseFuture {
             try {
                 while (!isDone()) {
                     done.await(timeout, TimeUnit.MILLISECONDS);
-                    if (isDone() || System.currentTimeMillis() - start > timeout) {
+                    long endTime=System.currentTimeMillis();
+                    if (isDone() || endTime - start > timeout) {
                         break;
                     }
                 }
@@ -289,6 +290,7 @@ public class DefaultFuture implements ResponseFuture {
                         if (future == null || future.isDone()) {
                             continue;
                         }
+
                         if (System.currentTimeMillis() - future.getStartTimestamp() > future.getTimeout()) {
                             // create exception response.
                             Response timeoutResponse = new Response(future.getId());

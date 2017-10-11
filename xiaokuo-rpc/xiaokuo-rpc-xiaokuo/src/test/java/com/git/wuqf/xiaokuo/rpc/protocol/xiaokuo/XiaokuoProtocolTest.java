@@ -25,8 +25,7 @@ public class XiaokuoProtocolTest {
         Invoker<DemoService> serviceInvoker = proxy.getInvoker(service, DemoService.class, u);
         protocol.export(serviceInvoker);
 
-        Invoker<DemoService> clientInvoker = protocol.refer(DemoService.class,
-                u);
+        Invoker<DemoService> clientInvoker = protocol.refer(DemoService.class,u);
         service = proxy.getProxy(clientInvoker);
 
         service.sayHello("jbwy");
