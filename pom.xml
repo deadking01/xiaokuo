@@ -20,7 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.4.RELEASE</spring.version>
         <logback.version>1.1.7</logback.version>
-        <netty.version>4.0.24.Final</netty.version>
+        <netty.version>4.1.52.Final</netty.version>
         <javassist_version>3.20.0-GA</javassist_version>
     </properties>
 
