@@ -20,8 +20,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>4.3.4.RELEASE</spring.version>
         <logback.version>1.1.7</logback.version>
-        <netty.version>4.0.24.Final</netty.version>
+        <netty.version>4.1.52.Final</netty.version>
         <javassist_version>3.20.0-GA</javassist_version>
+        <zookeeper.version>3.4.14</zookeeper.version>
+        <collections.version>4.1</collections.version>
     </properties>
 
     <dependencyManagement>
@@ -33,14 +35,12 @@
                 <version>4.11</version>
                 <scope>test</scope>
             </dependency>
-
             <!-- SLF4J -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>1.7.7</version>
             </dependency>
-
             <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -53,14 +53,12 @@
                 <version>${spring.version}</version>
                 <scope>test</scope>
             </dependency>
-
             <!-- Netty -->
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-all</artifactId>
                 <version>${netty.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>io.netty</groupId>
                 <artifactId>netty-transport</artifactId>
@@ -77,46 +75,40 @@
                 <artifactId>protostuff-runtime</artifactId>
                 <version>1.0.8</version>
             </dependency>
-
             <!-- ZooKeeper -->
             <dependency>
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
-                <version>3.4.6</version>
+                <version>${zookeeper.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.github.adyliu</groupId>
                 <artifactId>zkclient</artifactId>
                 <version>2.1.1</version>
             </dependency>
-
             <!-- Apache Commons Collections -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
-                <version>4.0</version>
+                <version>${collections.version}</version>
             </dependency>
-
             <!-- Objenesis -->
             <dependency>
                 <groupId>org.objenesis</groupId>
                 <artifactId>objenesis</artifactId>
                 <version>2.1</version>
             </dependency>
-
             <!-- CGLib -->
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>3.1</version>
             </dependency>
-
             <dependency>
                 <groupId>org.javassist</groupId>
                 <artifactId>javassist</artifactId>
                 <version>${javassist_version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
     <build>
